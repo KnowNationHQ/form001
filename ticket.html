@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Your Ticket — Prime Event</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background: #f8f6f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      min-height: 100svh;
+      padding: 24px 16px;
+    }
+
+    .ticket {
+      width: 100%;
+      max-width: 400px;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .ticket-top {
+      background: #2c2824;
+      padding: 28px 24px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .ticket-top::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      right: 0;
+      height: 24px;
+      background: radial-gradient(circle at 12px 0, #f8f6f2 12px, transparent 13px);
+      background-size: 24px 24px;
+    }
+    .ticket-top .brand { color: #d4a574; font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+    .ticket-top .title { color: #ffffff; font-size: 20px; font-weight: 800; margin-top: 4px; }
+    .ticket-top .date { color: #8c857e; font-size: 13px; margin-top: 6px; }
+
+    .ticket-body {
+      padding: 28px 24px 20px;
+      text-align: center;
+    }
+    .ticket-body .label { color: #8c857e; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+    .ticket-body .name { color: #2c2824; font-size: 26px; font-weight: 900; line-height: 1.15; }
+
+    .tier-badge {
+      display: inline-block;
+      background: rgba(212, 165, 116, 0.12);
+      color: #d4a574;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 999px;
+      margin-top: 12px;
+    }
+    .tier-badge .qty { color: #8c857e; font-weight: 500; }
+
+    .divider-dashed {
+      margin: 20px 0;
+      border: none;
+      height: 1px;
+      background: repeating-linear-gradient(to right, #e5e0d9 0, #e5e0d9 8px, transparent 8px, transparent 16px);
+    }
+
+    .code-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .code-section .code-label { color: #8c857e; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+    .code-section .code-value {
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      font-weight: 800;
+      color: #2c2824;
+      letter-spacing: 2px;
+    }
+
+    .ticket-footer {
+      padding: 0 24px 24px;
+      text-align: center;
+    }
+    .ticket-footer p { color: #b0a89f; font-size: 11px; line-height: 1.5; }
+
+    .back-link {
+      margin-top: 32px;
+      color: #8c857e;
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #2c2824; }
+
+    .error-state {
+      text-align: center;
+      padding: 40px 24px;
+      color: #8c857e;
+    }
+    .error-state h2 { color: #2c2824; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+
+    @media (max-width: 380px) {
+      .ticket-top { padding: 24px 20px 16px; }
+      .ticket-top .title { font-size: 17px; }
+      .ticket-body { padding: 24px 20px 16px; }
+      .ticket-body .name { font-size: 22px; }
+      .tier-badge { font-size: 13px; padding: 5px 14px; }
+      .code-section .code-value { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ticket" id="ticket">
+    <div class="ticket-top">
+      <div class="brand">Prime Event</div>
+      <h1 class="title">Workshop Registration</h1>
+      <p class="date">Your digital pass</p>
+    </div>
+
+    <div class="ticket-body" id="ticket-body">
+      <p class="label">Attendee</p>
+      <p class="name" id="attendee-name">—</p>
+
+      <div class="tier-badge" id="tier-badge">
+        <span id="tier-name">—</span>
+        <span class="qty" id="tier-qty"></span>
+      </div>
+
+      <hr class="divider-dashed">
+
+      <div class="code-section">
+        <span class="code-label">Confirmation</span>
+        <span class="code-value" id="conf-code">—</span>
+      </div>
+    </div>
+
+    <div class="ticket-footer">
+      <p>Present this at the door on event day.<br>A confirmation copy has been sent to your email.</p>
+    </div>
+  </div>
+
+  <a class="back-link" href="event-workshop-reg.html">← Register another</a>
+
+  <script>
+    (function() {
+      const p = new URLSearchParams(window.location.search);
+      const name = p.get('name');
+      const tier = p.get('tier');
+      const qty = p.get('qty');
+      const code = p.get('code');
+
+      if (name) document.getElementById('attendee-name').textContent = name;
+      if (tier) document.getElementById('tier-name').textContent = tier;
+      if (qty && parseInt(qty) > 1) document.getElementById('tier-qty').textContent = 'x' + qty;
+      if (code) document.getElementById('conf-code').textContent = code;
+
+      if (!name && !code) {
+        document.getElementById('ticket').innerHTML =
+          '<div class="error-state"><h2>Ticket not found</h2><p>No ticket details provided. Check your link or contact the organizer.</p></div>';
+      }
+    })();
+  </script>
+
+</body>
+</html>

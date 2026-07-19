@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Prime Athlete — Registration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            stone: {
+              950: '#0c0a09',
+              900: '#1c1917',
+              800: '#292524',
+              700: '#44403c',
+              200: '#e7e5e4',
+              100: '#f5f5f4',
+            },
+            lime: {
+              400: '#a3e635',
+            },
+          },
+          fontFamily: {
+            display: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background: #0c0a09;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      padding: 16px;
+    }
+    #app {
+      width: 100%;
+      max-width: 448px;
+    }
+    #footer {
+      width: 100%;
+      max-width: 448px;
+      margin: 32px auto 0;
+      opacity: 0.12;
+      user-select: none;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .step {
+      display: none;
+      animation: fadeSlideIn 0.35s ease-out;
+    }
+    .step.active { display: block; }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .goal-btn {
+      width: 100%;
+      padding: 20px 16px;
+      border-radius: 16px;
+      border: 1.5px solid #292524;
+      background: #1c1917;
+      color: #e7e5e4;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 50px;
+      -webkit-tap-highlight-color: transparent;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .goal-btn:hover {
+      border-color: #a3e635;
+      background: rgba(163, 231, 53, 0.06);
+    }
+    .goal-btn:active {
+      transform: scale(0.97);
+    }
+    .goal-btn .icon {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .goal-btn .icon svg {
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+    }
+    .goal-btn .sub {
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+      color: #78716c;
+      margin-top: 4px;
+    }
+
+    .freq-btn {
+      width: 100%;
+      padding: 18px 16px;
+      border-radius: 14px;
+      border: 1.5px solid #292524;
+      background: #1c1917;
+      color: #e7e5e4;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 50px;
+      -webkit-tap-highlight-color: transparent;
+      text-align: center;
+    }
+    .freq-btn:hover {
+      border-color: #a3e635;
+      background: rgba(163, 231, 53, 0.06);
+    }
+    .freq-btn:active {
+      transform: scale(0.97);
+    }
+    .freq-btn .badge {
+      display: inline-block;
+      background: #292524;
+      color: #a3e635;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-left: 8px;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      color: #78716c;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 8px 0;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      -webkit-tap-highlight-color: transparent;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: #e7e5e4; }
+
+    .input-field {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1.5px solid #292524;
+      background: #1c1917;
+      color: #f5f5f4;
+      font-size: 16px;
+      font-family: 'Inter', system-ui, sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .input-field::placeholder { color: #57534e; }
+    .input-field:focus { border-color: #a3e635; }
+    .input-field.error { border-color: #ef4444; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: #a3e635;
+      color: #0c0a09;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 50px;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .submit-btn:hover { background: #93d42b; }
+    .submit-btn:active { transform: scale(0.97); }
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .footer-text {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e7e5e4;
+    }
+    .error-msg {
+      color: #ef4444;
+      font-size: 13px;
+      display: none;
+      margin-top: 4px;
+    }
+    .error-msg.show { display: block; }
+
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #292524;
+      transition: all 0.3s;
+    }
+    .step-dot.active { background: #a3e635; width: 24px; border-radius: 4px; }
+    .step-dot.done { background: #a3e635; }
+
+    #success-overlay {
+      position: fixed;
+      inset: 0;
+      background: #0c0a09;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 50;
+      animation: fadeIn 0.4s ease-out;
+    }
+    #success-overlay.show { display: flex; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .check-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(163, 231, 53, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .pulse-ring {
+      animation: pulseRing 2s ease-out infinite;
+    }
+    @keyframes pulseRing {
+      0% { box-shadow: 0 0 0 0 rgba(163, 231, 53, 0.3); }
+      70% { box-shadow: 0 0 0 20px rgba(163, 231, 53, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(163, 231, 53, 0); }
+    }
+
+    .confetti-piece {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      animation: confettiFall linear forwards;
+      pointer-events: none;
+      z-index: 51;
+    }
+    @keyframes confettiFall {
+      0% { opacity: 1; transform: translateY(-10px) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+    }
+
+    @media (max-width: 479px) {
+      body { padding: 12px; }
+      #app .text-2xl { font-size: 1.35rem; }
+      .step-indicator { margin-bottom: 24px; }
+    }
+    @media (max-width: 380px) {
+      body { padding: 10px; }
+      .goal-btn { padding: 14px 10px; font-size: 14px; }
+      .goal-btn .icon svg { width: 26px; height: 26px; }
+      .goal-btn .sub { font-size: 11px; }
+      .freq-btn { padding: 14px 12px; font-size: 15px; }
+      #app .text-2xl { font-size: 1.2rem; }
+      .step-indicator { margin-bottom: 20px; gap: 6px; }
+      .step-dot.active { width: 20px; }
+      #app .text-lg { font-size: 1.05rem; }
+      .check-circle { width: 60px; height: 60px; }
+      .check-circle svg { width: 30px; height: 30px; }
+      #success-overlay { padding: 16px; }
+      #success-overlay .text-2xl { font-size: 1.2rem; }
+      .input-field { padding: 14px 16px; }
+      .submit-btn { padding: 14px; font-size: 16px; }
+    }
+    @media (max-width: 340px) {
+      body { padding: 8px; }
+      .goal-btn { padding: 12px 8px; font-size: 13px; border-radius: 12px; }
+      .goal-btn .icon svg { width: 22px; height: 22px; }
+      .goal-btn .icon { margin-bottom: 5px; }
+      .freq-btn { padding: 12px 10px; font-size: 14px; border-radius: 12px; }
+      .freq-btn .badge { font-size: 10px; padding: 1px 7px; }
+      #app .text-2xl { font-size: 1.1rem; }
+      #app .text-lg { font-size: 1rem; }
+      #app .text-sm { font-size: 12px; }
+      .step-indicator { margin-bottom: 16px; }
+      .step-dot { width: 6px; height: 6px; gap: 4px; }
+      .step-dot.active { width: 16px; }
+      .back-btn { font-size: 13px; min-height: 44px; }
+      .back-btn svg { width: 14px; height: 14px; }
+      #success-overlay .text-2xl { font-size: 1.1rem; }
+      #success-overlay .text-sm { font-size: 12px; }
+      .input-field { padding: 12px 14px; font-size: 15px; border-radius: 12px; }
+      .submit-btn { padding: 12px; font-size: 15px; min-height: 48px; border-radius: 12px; }
+      .error-msg { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <div class="text-center mb-8">
+      <span class="text-lime-400 text-sm font-semibold tracking-widest uppercase">Prime Athlete</span>
+      <h1 class="text-stone-100 text-2xl font-extrabold mt-1">Client Registration</h1>
+    </div>
+
+    <div class="step-indicator">
+      <div class="step-dot active" data-dot="1"></div>
+      <div class="step-dot" data-dot="2"></div>
+      <div class="step-dot" data-dot="3"></div>
+    </div>
+
+    <!-- Step 1: The Goal -->
+    <div class="step active" id="step-1">
+      <p class="text-stone-200 text-lg font-semibold mb-1">What's your goal?</p>
+      <p class="text-stone-700 text-sm mb-5">Pick the target that fires you up.</p>
+
+      <div class="grid grid-cols-1 gap-3">
+        <button class="goal-btn" data-goal="Gain Lean Muscle" onclick="selectGoal(this)">
+          <span class="icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6.5 6.5 17.5 17.5"/>
+              <path d="M16 4a2 2 0 0 1 2 2v2l4 4-4 4v2a2 2 0 0 1-2 2"/>
+              <path d="M8 20a2 2 0 0 1-2-2v-2l-4-4 4-4V6a2 2 0 0 1 2-2"/>
+              <circle cx="12" cy="12" r="1" fill="#a3e635"/>
+            </svg>
+          </span>
+          Gain Lean Muscle
+          <span class="sub">Strength & hypertrophy focused</span>
+        </button>
+        <button class="goal-btn" data-goal="Lose Body Fat" onclick="selectGoal(this)">
+          <span class="icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C10 6 6 9 6 13a6 6 0 0 0 12 0c0-4-4-7-6-11z"/>
+              <path d="M10 17a3 3 0 0 0 4 0"/>
+              <circle cx="12" cy="13" r="1" fill="#a3e635"/>
+            </svg>
+          </span>
+          Lose Body Fat
+          <span class="sub">Metabolic conditioning & nutrition</span>
+        </button>
+        <button class="goal-btn" data-goal="Athletic Performance" onclick="selectGoal(this)">
+          <span class="icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              <circle cx="12" cy="12" r="1" fill="#a3e635"/>
+            </svg>
+          </span>
+          Athletic Performance
+          <span class="sub">Speed, power & endurance</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: Commitment -->
+    <div class="step" id="step-2">
+      <button class="back-btn" onclick="goToStep(1)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+      </button>
+
+      <p class="text-stone-200 text-lg font-semibold mb-1 mt-2">Commitment level</p>
+      <p class="text-stone-700 text-sm mb-5">How many days per week can you train?</p>
+
+      <div class="grid grid-cols-1 gap-3">
+        <button class="freq-btn" data-freq="2-3 Days" onclick="selectFreq(this)">
+          2–3 Days
+          <span class="badge">Foundation</span>
+        </button>
+        <button class="freq-btn" data-freq="4-5 Days" onclick="selectFreq(this)">
+          4–5 Days
+          <span class="badge">Dedicated</span>
+        </button>
+        <button class="freq-btn" data-freq="6 Days" onclick="selectFreq(this)">
+          6 Days
+          <span class="badge">Elite</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3: Contact -->
+    <div class="step" id="step-3">
+      <button class="back-btn" onclick="goToStep(2)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+      </button>
+
+      <p class="text-stone-200 text-lg font-semibold mb-1 mt-2">You're almost there</p>
+      <p class="text-stone-700 text-sm mb-5">Drop your details and let's get after it.</p>
+
+      <div class="space-y-4">
+        <div>
+          <input
+            id="name-input"
+            class="input-field"
+            type="text"
+            inputmode="text"
+            autocomplete="name"
+            placeholder="Full name"
+          >
+          <div class="error-msg" id="name-error">Please enter your name</div>
+        </div>
+        <div>
+          <input
+            id="email-input"
+            class="input-field"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="Email address"
+          >
+          <div class="error-msg" id="email-error">Please enter a valid email</div>
+        </div>
+      </div>
+
+      <button class="submit-btn mt-6" id="submit-btn" onclick="handleSubmit()">
+        Get Started
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer">
+    <p class="footer-text">Project by Know Nation Limited</p>
+  </div>
+
+  <!-- Success Overlay -->
+  <div id="success-overlay">
+    <div class="text-center max-w-sm">
+      <div class="check-circle pulse-ring">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h2 class="text-stone-100 text-2xl font-extrabold mb-2">You're In, <span id="confirm-name" class="text-lime-400"></span></h2>
+      <p class="text-stone-700 text-sm leading-relaxed mb-6" id="confirm-message"></p>
+
+      <div class="bg-stone-900 rounded-2xl p-5 text-left border border-stone-800 mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-9 h-9 rounded-full bg-lime-400/10 flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          </div>
+          <div>
+            <p class="text-stone-200 text-sm font-semibold">Goal</p>
+            <p class="text-stone-700 text-xs" id="confirm-goal"></p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-lime-400/10 flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <p class="text-stone-200 text-sm font-semibold">Commitment</p>
+            <p class="text-stone-700 text-xs" id="confirm-freq"></p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-stone-700 text-xs">A confirmation email will be sent to <span id="confirm-email" class="text-stone-200"></span></p>
+    </div>
+  </div>
+
+  <script>
+    const state = { goal: '', freq: '', name: '', email: '' };
+
+    function selectGoal(el) {
+      state.goal = el.dataset.goal;
+      document.querySelectorAll('.goal-btn').forEach(b => {
+        b.style.borderColor = '#292524';
+        b.style.background = '#1c1917';
+      });
+      el.style.borderColor = '#a3e635';
+      el.style.background = 'rgba(163, 231, 53, 0.08)';
+      setTimeout(() => goToStep(2), 200);
+    }
+
+    function selectFreq(el) {
+      state.freq = el.dataset.freq;
+      document.querySelectorAll('.freq-btn').forEach(b => {
+        b.style.borderColor = '#292524';
+        b.style.background = '#1c1917';
+      });
+      el.style.borderColor = '#a3e635';
+      el.style.background = 'rgba(163, 231, 53, 0.08)';
+      setTimeout(() => goToStep(3), 200);
+    }
+
+    function goToStep(n) {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step-' + n).classList.add('active');
+      document.querySelectorAll('.step-dot').forEach((d, i) => {
+        const idx = i + 1;
+        d.classList.remove('active', 'done');
+        if (idx === n) d.classList.add('active');
+        else if (idx < n) d.classList.add('done');
+      });
+    }
+
+    function validateEmail(e) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+    }
+
+    function handleSubmit() {
+      const name = document.getElementById('name-input').value.trim();
+      const email = document.getElementById('email-input').value.trim();
+      let valid = true;
+
+      const nameErr = document.getElementById('name-error');
+      const emailErr = document.getElementById('email-error');
+      const nameInput = document.getElementById('name-input');
+      const emailInput = document.getElementById('email-input');
+
+      nameErr.classList.remove('show');
+      emailErr.classList.remove('show');
+      nameInput.classList.remove('error');
+      emailInput.classList.remove('error');
+
+      if (!name) { nameErr.classList.add('show'); nameInput.classList.add('error'); valid = false; }
+      if (!email || !validateEmail(email)) { emailErr.classList.add('show'); emailInput.classList.add('error'); valid = false; }
+
+      if (!valid) return;
+
+      state.name = name;
+      state.email = email;
+
+      showSuccess();
+    }
+
+    function showSuccess() {
+      document.getElementById('confirm-name').textContent = state.name;
+      document.getElementById('confirm-goal').textContent = state.goal;
+      document.getElementById('confirm-freq').textContent = state.freq + ' / week';
+      document.getElementById('confirm-email').textContent = state.email;
+
+      document.getElementById('success-overlay').classList.add('show');
+
+      fireConfetti();
+    }
+
+    function fireConfetti() {
+      const colors = ['#a3e635', '#84cc16', '#65a30d', '#4d7c0f', '#e7e5e4', '#f5f5f4'];
+      for (let i = 0; i < 60; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.background = colors[Math.floor(Math.random() * colors.length)];
+        el.style.width = (Math.random() * 6 + 4) + 'px';
+        el.style.height = (Math.random() * 6 + 4) + 'px';
+        el.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+        el.style.animationDelay = (Math.random() * 1.2) + 's';
+        el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 4000);
+      }
+    }
+
+    document.getElementById('name-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('email-input').focus();
+    });
+    document.getElementById('email-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleSubmit();
+    });
+  </script>
+</body>
+</html>
