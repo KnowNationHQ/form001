@@ -1,34 +1,51 @@
-# Event Workshop Registration Form
+# Prime Event — Workshop Registration
 
-**About** — A lightweight, multi-step registration system for Prime Event workshops. Customers select ticket tiers (General Admission ₦29,900 / VIP ₦79,900 / Premium ₦149,900), provide contact details, and proceed to checkout via TikTok Shop. After payment, the buyer taps "I've Paid — Get My Ticket" to view their unique digital pass. Built with vanilla HTML/CSS/JS — zero dependencies, runs directly in the browser from `file://`.
+Multi-step ticket registration with TikTok Shop checkout and digital ticket delivery. Built with vanilla HTML/CSS/JS — no dependencies, no build step, runs from any static host or `file://`.
+
+## Live Demo
+
+| Form | URL |
+|------|-----|
+| Workshop Signup | [`workshop/`](https://workshop-form-01.netlify.app/workshop/) |
+| Fitness Registration | [`fitness/`](https://workshop-form-01.netlify.app/fitness/) |
+| Form Gallery | [`index.html`](https://workshop-form-01.netlify.app/) |
+
+## Features
+
+- **3-step checkout** — ticket selection → attendee details → order confirmation
+- **Ticket tiers** — General Admission (₦29,900), VIP (₦79,900), Premium (₦149,900)
+- **TikTok Shop integration** — pay via TikTok, then tap "I've Paid" to claim tickets
+- **Digital ticket page** — renders attendee name, tier, confirmation code from URL params
+- **Print / Save as PDF** — one-click print with print-optimized CSS
 
 ## Structure
 
 ```
 RegForm/
-  index.html            ← hub gallery linking to all forms
+  index.html            ← hub gallery linking all forms
   fitness/
-    index.html          ← fitness client registration
+    index.html          ← fitness client registration form
   workshop/
-    index.html          ← event workshop signup with TikTok Shop
-    ticket.html         ← digital ticket page (reads URL params)
+    index.html          ← event workshop signup (3-step + TikTok Shop)
+    ticket.html         ← digital ticket page with print support
   README.md
 ```
 
-## Usage
+## Workflow
 
-Open any `index.html` directly in a browser — no server or build step required.
-
-## Flow
-
-1. **Tickets** — select tier and quantity
-2. **Your Details** — name, email, phone
-3. **Confirm** — order summary → TikTok Shop checkout → tap "I've Paid — Get My Ticket"
+1. **Select tier & qty** — choose from three ticket tiers, adjust with +/- steppers
+2. **Enter details** — name, email, phone (inline validation)
+3. **Confirm & pay** — review order → pay via TikTok Shop → tap "I've Paid — Get My Ticket"
+4. **Save your ticket** — download or print your digital pass as PDF
 
 ## Currency
 
-Naira (₦) — all prices in NGN.
+All prices in Nigerian Naira (₦).
+
+## Deployment
+
+Auto-deploys to Netlify from the `main` branch. Each subfolder serves its own `index.html` — no server config needed.
 
 ## Tech
 
-Vanilla HTML/CSS/JS. No dependencies. Works from `file://`.
+Vanilla HTML/CSS/JS. Tailwind CSS (CDN) on the hub gallery only. Zero npm dependencies.
