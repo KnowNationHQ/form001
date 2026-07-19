@@ -423,15 +423,9 @@
 
       <p style="text-align:center;color:#b0a89f;font-size:11px;margin-top:12px;">Your order is saved. No charges yet.</p>
 
-      <!-- Seller tool: hidden ticket link — tap ⚙️ to reveal after payment verified -->
-      <div style="text-align:center;margin-top:16px;">
-        <button id="seller-reveal" style="background:none;border:none;cursor:pointer;color:#8c857e;font-size:11px;padding:4px 8px;min-height:28px;opacity:0.2;transition:opacity 0.25s;-webkit-tap-highlight-color:transparent;" onmouseover="this.style.opacity=0.6" onmouseout="this.style.opacity=0.2">⚙️</button>
-        <div id="seller-ticket-link" style="display:none;margin-top:10px;" class="card" style="padding:16px;text-align:center;">
-          <p style="color:#8c857e;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;">Ticket Link</p>
-          <p style="color:#2c2824;font-size:13px;font-weight:600;word-break:break-all;" id="ticket-link-display"></p>
-          <p style="color:#b0a89f;font-size:11px;margin-top:6px;">Copy this link and send to buyer after payment confirmed.</p>
-        </div>
-      </div>
+      <button id="paid-btn" disabled style="width:100%;padding:14px;border:2px solid #d4a574;border-radius:14px;background:transparent;color:#d4a574;font-size:16px;font-weight:700;cursor:pointer;margin-top:16px;transition:all 0.25s;opacity:0.4;-webkit-tap-highlight-color:transparent;">
+        I've Paid — Get My Ticket
+      </button>
     </div>
   </div>
 
@@ -550,12 +544,17 @@
       const qty = state.tickets.reduce((s, t) => s + t.qty, 0);
       const activeTier = state.tickets.find(t => t.qty > 0);
       const link = window.location.href.replace(/[^/]*$/, '') + 'ticket.html?name=' + encodeURIComponent(state.name) + '&tier=' + encodeURIComponent(activeTier ? activeTier.tier : '') + '&qty=' + qty + '&code=' + code;
-      document.getElementById('ticket-link-display').textContent = link;
+      document.getElementById('paid-btn').dataset.ticketLink = link;
     }
 
-    document.getElementById('seller-reveal').addEventListener('click', function() {
-      const el = document.getElementById('seller-ticket-link');
-      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    document.getElementById('tiktok-btn').addEventListener('click', function() {
+      document.getElementById('paid-btn').disabled = false;
+      document.getElementById('paid-btn').style.opacity = '1';
+    });
+
+    document.getElementById('paid-btn').addEventListener('click', function() {
+      const link = this.dataset.ticketLink;
+      if (link) window.location.href = link;
     });
 
     document.getElementById('name-input').addEventListener('keydown', e => {

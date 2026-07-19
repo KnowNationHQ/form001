@@ -21,7 +21,7 @@ Open any `.html` file directly in a browser — no server or build step required
 2. **Your Details** — name, email, phone
 3. **Confirm** — order summary → TikTok Shop checkout
 
-After payment, the seller taps the ⚙️ button on step 3 to reveal the unique ticket link to send to the buyer.
+After paying on TikTok Shop, return and tap **"I've Paid — Get My Ticket"** to view your digital pass. The button is disabled until you click the TikTok checkout link.
 
 ## Currency
 
