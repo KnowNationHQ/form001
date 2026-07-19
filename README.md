@@ -8,7 +8,7 @@ Multi-step ticket registration with TikTok Shop checkout and digital ticket deli
 |------|-----|
 | Workshop Signup | [`workshop/`](https://workshop-form-01.netlify.app/workshop/) |
 | Fitness Registration | [`fitness/`](https://workshop-form-01.netlify.app/fitness/) |
-| Form Gallery | [`index.html`](https://workshop-form-01.netlify.app/) |
+| Workshop Signup (root) | [`/`](https://workshop-form-01.netlify.app/) |
 
 ## Features
 
@@ -22,7 +22,6 @@ Multi-step ticket registration with TikTok Shop checkout and digital ticket deli
 
 ```
 RegForm/
-  index.html            ← hub gallery linking all forms
   fitness/
     index.html          ← fitness client registration form
   workshop/
