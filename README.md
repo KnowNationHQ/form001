@@ -16,26 +16,24 @@ Open `workshop/index.html` and `workshop/ticket.html`, find the `CONFIG` block a
 
 ```js
 const CONFIG = {
-  eventName: 'Your Event Name',
-  brand: '#d4a574',       // accent color
-  bg: '#f8f6f2',          // background color
-  text: '#2c2824',        // text color
-  footer: 'Your Company', // footer credit
-  codePrefix: 'EVENT',    // confirmation code prefix
-  tickets: [              // ticket tiers
+  eventName: 'Your Event',
+  brand: '#d4a574',
+  bg: '#f8f6f2',
+  footer: 'Your Company',
+  codePrefix: 'EVENT',
+  tickets: [
     { tier: 'Basic', price: 5000, desc: 'Standard access' },
-    { tier: 'VIP', price: 15000, desc: 'Priority seating' },
   ],
 };
 ```
 
-That's it. The form, ticket page, and all colors update automatically.
+That's it. Everything updates automatically.
 
 ## Flow
 
 1. Select ticket tier & quantity
-2. Enter name, email, phone
+2. Enter name, email, phone  
 3. Pay via TikTok Shop → tap "I've Paid — Get My Ticket"
 4. Print or save the digital pass as PDF
 
-All prices in ₦. Zero dependencies — open any `.html` directly in a browser.
+No dependencies. Open directly in a browser.

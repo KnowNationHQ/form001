@@ -167,7 +167,7 @@
   <div class="ticket" id="ticket">
     <div class="ticket-top">
       <div class="brand">Prime Event</div>
-      <h1 class="title">Workshop Registration</h1>
+      <h1 class="title" id="ticket-title">Workshop Registration</h1>
       <p class="date">Your digital pass</p>
     </div>
 
@@ -202,7 +202,7 @@
     //  EDIT THESE to match your event
     // ═══════════════════════════════════════════════════════════════════════════
     const CONFIG = {
-      eventName: 'Prime Event',
+      eventName: 'Your Event',
       brand: '#d4a574',
       bg: '#f8f6f2',
       text: '#2c2824',
@@ -221,6 +221,7 @@
     r.setProperty('--light', CONFIG.light);
     document.title = 'Your Ticket — ' + CONFIG.eventName;
     document.querySelector('.brand').textContent = CONFIG.eventName;
+    document.getElementById('ticket-title').textContent = CONFIG.eventName + ' Registration';
 
     (function() {
       const p = new URLSearchParams(window.location.search);
