@@ -1,6 +1,6 @@
 # Event Workshop Registration Form
 
-Multi-step registration form for Prime Event workshops — ticket selection, attendee info, and checkout via TikTok Shop. Includes a digital ticket page with QR-ready links.
+**About** — A lightweight, multi-step registration system for Prime Event workshops. Customers select ticket tiers (General Admission, VIP, Premium), provide contact details, and proceed to checkout via TikTok Shop. After payment verification, the seller generates and shares a unique digital ticket link. Built with vanilla HTML/CSS/JS — zero dependencies, runs directly in the browser from `file://`.
 
 ## Forms
 
