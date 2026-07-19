@@ -8,6 +8,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --brand: #d4a574;
+      --bg: #f8f6f2;
+      --text: #2c2824;
+      --muted: #8c857e;
+      --border: #e5e0d9;
+      --light: #b0a89f;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       height: 100%;
@@ -15,7 +23,7 @@
       -webkit-font-smoothing: antialiased;
     }
     body {
-      background: #f8f6f2;
+      background: var(--bg);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -35,7 +43,7 @@
     }
 
     .ticket-top {
-      background: #2c2824;
+      background: var(--text);
       padding: 28px 24px 20px;
       text-align: center;
       position: relative;
@@ -47,37 +55,37 @@
       left: 0;
       right: 0;
       height: 24px;
-      background: radial-gradient(circle at 12px 0, #f8f6f2 12px, transparent 13px);
+      background: radial-gradient(circle at 12px 0, var(--bg) 12px, transparent 13px);
       background-size: 24px 24px;
     }
-    .ticket-top .brand { color: #d4a574; font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+    .ticket-top .brand { color: var(--brand); font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
     .ticket-top .title { color: #ffffff; font-size: 20px; font-weight: 800; margin-top: 4px; }
-    .ticket-top .date { color: #8c857e; font-size: 13px; margin-top: 6px; }
+    .ticket-top .date { color: var(--muted); font-size: 13px; margin-top: 6px; }
 
     .ticket-body {
       padding: 28px 24px 20px;
       text-align: center;
     }
-    .ticket-body .label { color: #8c857e; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
-    .ticket-body .name { color: #2c2824; font-size: 26px; font-weight: 900; line-height: 1.15; }
+    .ticket-body .label { color: var(--muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+    .ticket-body .name { color: var(--text); font-size: 26px; font-weight: 900; line-height: 1.15; }
 
     .tier-badge {
       display: inline-block;
-      background: rgba(212, 165, 116, 0.12);
-      color: #d4a574;
+      background: color-mix(in srgb, var(--brand) 12%, transparent);
+      color: var(--brand);
       font-size: 14px;
       font-weight: 700;
       padding: 6px 18px;
       border-radius: 999px;
       margin-top: 12px;
     }
-    .tier-badge .qty { color: #8c857e; font-weight: 500; }
+    .tier-badge .qty { color: var(--muted); font-weight: 500; }
 
     .divider-dashed {
       margin: 20px 0;
       border: none;
       height: 1px;
-      background: repeating-linear-gradient(to right, #e5e0d9 0, #e5e0d9 8px, transparent 8px, transparent 16px);
+      background: repeating-linear-gradient(to right, var(--border) 0, var(--border) 8px, transparent 8px, transparent 16px);
     }
 
     .code-section {
@@ -86,12 +94,12 @@
       align-items: center;
       padding-top: 4px;
     }
-    .code-section .code-label { color: #8c857e; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+    .code-section .code-label { color: var(--muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
     .code-section .code-value {
       font-family: 'Courier New', monospace;
       font-size: 18px;
       font-weight: 800;
-      color: #2c2824;
+      color: var(--text);
       letter-spacing: 2px;
     }
 
@@ -99,27 +107,27 @@
       padding: 0 24px 24px;
       text-align: center;
     }
-    .ticket-footer p { color: #b0a89f; font-size: 11px; line-height: 1.5; }
+    .ticket-footer p { color: var(--light); font-size: 11px; line-height: 1.5; }
 
     .back-link {
       margin-top: 32px;
-      color: #8c857e;
+      color: var(--muted);
       font-size: 13px;
       text-decoration: none;
       transition: color 0.2s;
     }
-    .back-link:hover { color: #2c2824; }
+    .back-link:hover { color: var(--text); }
 
     .error-state {
       text-align: center;
       padding: 40px 24px;
-      color: #8c857e;
+      color: var(--muted);
     }
-    .error-state h2 { color: #2c2824; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .error-state h2 { color: var(--text); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
 
     .print-btn {
       margin-top: 24px;
-      background: #d4a574;
+      background: var(--brand);
       color: #fff;
       border: none;
       border-radius: 14px;
@@ -129,10 +137,10 @@
       cursor: pointer;
       width: 100%;
       max-width: 400px;
-      transition: background 0.2s;
+      transition: filter 0.2s;
       -webkit-tap-highlight-color: transparent;
     }
-    .print-btn:hover { background: #c49460; }
+    .print-btn:hover { filter: brightness(0.92); }
     .print-btn:active { transform: scale(0.97); }
 
     @media (max-width: 380px) {
@@ -147,7 +155,7 @@
     @media print {
       body { background: #fff; padding: 0; min-height: auto; justify-content: flex-start; }
       .print-btn, .back-link { display: none !important; }
-      .ticket { box-shadow: none; border: 1px solid #e5e0d9; border-radius: 12px; }
+      .ticket { box-shadow: none; border: 1px solid var(--border); border-radius: 12px; }
       .ticket-top { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .ticket-top::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .tier-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -190,6 +198,30 @@
   <a class="back-link" href="index.html">← Register another</a>
 
   <script>
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  EDIT THESE to match your event
+    // ═══════════════════════════════════════════════════════════════════════════
+    const CONFIG = {
+      eventName: 'Prime Event',
+      brand: '#d4a574',
+      bg: '#f8f6f2',
+      text: '#2c2824',
+      muted: '#8c857e',
+      border: '#e5e0d9',
+      light: '#b0a89f',
+    };
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    const r = document.documentElement.style;
+    r.setProperty('--brand', CONFIG.brand);
+    r.setProperty('--bg', CONFIG.bg);
+    r.setProperty('--text', CONFIG.text);
+    r.setProperty('--muted', CONFIG.muted);
+    r.setProperty('--border', CONFIG.border);
+    r.setProperty('--light', CONFIG.light);
+    document.title = 'Your Ticket — ' + CONFIG.eventName;
+    document.querySelector('.brand').textContent = CONFIG.eventName;
+
     (function() {
       const p = new URLSearchParams(window.location.search);
       const name = p.get('name');

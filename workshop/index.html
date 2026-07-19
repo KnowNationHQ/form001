@@ -15,6 +15,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --brand: #d4a574;
+      --bg: #f8f6f2;
+      --text: #2c2824;
+      --muted: #8c857e;
+      --border: #e5e0d9;
+      --light: #b0a89f;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       height: 100%;
@@ -22,7 +30,7 @@
       -webkit-font-smoothing: antialiased;
     }
     body {
-      background: #f8f6f2;
+      background: var(--bg);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -32,8 +40,8 @@
     }
     #app { width: 100%; max-width: 448px; }
 
-    .brand { color: #d4a574; font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
-    .title { color: #2c2824; font-size: 24px; font-weight: 800; }
+    .brand { color: var(--brand); font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+    .title { color: var(--text); font-size: 24px; font-weight: 800; }
 
     .step { display: none; animation: fadeSlide 0.3s ease-out; }
     .step.active { display: block; }
@@ -49,32 +57,32 @@
     }
     .dot {
       width: 8px; height: 8px; border-radius: 50%;
-      background: #e5e0d9; transition: all 0.3s;
+      background: var(--border); transition: all 0.3s;
     }
-    .dot.active { background: #d4a574; width: 24px; border-radius: 4px; }
-    .dot.done { background: #d4a574; }
+    .dot.active { background: var(--brand); width: 24px; border-radius: 4px; }
+    .dot.done { background: var(--brand); }
 
-    .step-heading { color: #2c2824; font-size: 18px; font-weight: 700; }
-    .step-sub { color: #8c857e; font-size: 14px; margin-top: 2px; margin-bottom: 20px; }
+    .step-heading { color: var(--text); font-size: 18px; font-weight: 700; }
+    .step-sub { color: var(--muted); font-size: 14px; margin-top: 2px; margin-bottom: 20px; }
 
     .ticket-card {
       border-radius: 16px;
-      border: 1.5px solid #e5e0d9;
+      border: 1.5px solid var(--border);
       background: #ffffff;
       padding: 20px;
       cursor: pointer;
       transition: all 0.2s;
       -webkit-tap-highlight-color: transparent;
     }
-    .ticket-card:hover { border-color: #d4a574; }
-    .ticket-card.selected { border-color: #d4a574; background: rgba(212, 165, 116, 0.04); }
+    .ticket-card:hover { border-color: var(--brand); }
+    .ticket-card.selected { border-color: var(--brand); background: color-mix(in srgb, var(--brand) 4%, transparent); }
     .ticket-card .price {
-      font-size: 24px; font-weight: 800; color: #d4a574;
+      font-size: 24px; font-weight: 800; color: var(--brand);
     }
     .ticket-icon { display: block; margin-bottom: 10px; }
     .ticket-icon svg { width: 28px; height: 28px; display: inline-block; }
-    .ticket-card .label { font-size: 16px; font-weight: 600; color: #2c2824; }
-    .ticket-card .desc { font-size: 13px; color: #8c857e; margin-top: 3px; }
+    .ticket-card .label { font-size: 16px; font-weight: 600; color: var(--text); }
+    .ticket-card .desc { font-size: 13px; color: var(--muted); margin-top: 3px; }
 
     .stepper {
       display: flex; align-items: center; gap: 14px; margin-top: 14px;
@@ -82,9 +90,9 @@
     .stepper-btn {
       width: 48px; height: 48px;
       border-radius: 50%;
-      border: 1.5px solid #e5e0d9;
+      border: 1.5px solid var(--border);
       background: #ffffff;
-      color: #2c2824;
+      color: var(--text);
       font-size: 20px;
       font-weight: 600;
       display: flex; align-items: center; justify-content: center;
@@ -92,11 +100,11 @@
       transition: all 0.2s;
       -webkit-tap-highlight-color: transparent;
     }
-    .stepper-btn:hover { border-color: #d4a574; color: #d4a574; }
-    .stepper-btn:active { transform: scale(0.93); background: #f8f6f2; }
+    .stepper-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .stepper-btn:active { transform: scale(0.93); background: var(--bg); }
     .stepper-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
     .stepper-count {
-      font-size: 20px; font-weight: 700; color: #2c2824;
+      font-size: 20px; font-weight: 700; color: var(--text);
       min-width: 28px; text-align: center;
     }
 
@@ -105,15 +113,15 @@
       padding: 16px 20px;
       background: #ffffff;
       border-radius: 14px;
-      border: 1px solid #e5e0d9;
+      border: 1px solid var(--border);
       margin-top: 20px;
     }
-    .total-bar .tl { font-size: 14px; color: #8c857e; font-weight: 500; }
-    .total-bar .ta { font-size: 22px; font-weight: 800; color: #d4a574; }
+    .total-bar .tl { font-size: 14px; color: var(--muted); font-weight: 500; }
+    .total-bar .ta { font-size: 22px; font-weight: 800; color: var(--brand); }
 
     .back-btn {
       background: none; border: none;
-      color: #8c857e; font-size: 14px;
+      color: var(--muted); font-size: 14px;
       font-weight: 500; cursor: pointer;
       padding: 8px 0; min-height: 48px;
       display: inline-flex; align-items: center;
@@ -121,23 +129,23 @@
       -webkit-tap-highlight-color: transparent;
       transition: color 0.2s;
     }
-    .back-btn:hover { color: #2c2824; }
+    .back-btn:hover { color: var(--text); }
 
     .input-field {
       width: 100%;
       padding: 16px 18px;
       border-radius: 14px;
-      border: 1.5px solid #e5e0d9;
+      border: 1.5px solid var(--border);
       background: #ffffff;
-      color: #2c2824;
+      color: var(--text);
       font-size: 16px;
       font-family: 'Inter', system-ui, sans-serif;
       outline: none;
       transition: border-color 0.2s;
       -webkit-appearance: none;
     }
-    .input-field::placeholder { color: #b0a89f; }
-    .input-field:focus { border-color: #d4a574; }
+    .input-field::placeholder { color: var(--light); }
+    .input-field:focus { border-color: var(--brand); }
     .input-field.error { border-color: #e87979; }
 
     .btn-primary {
@@ -145,7 +153,7 @@
       padding: 16px;
       border: none;
       border-radius: 14px;
-      background: #d4a574;
+      background: var(--brand);
       color: #ffffff;
       font-size: 17px;
       font-weight: 700;
@@ -155,7 +163,7 @@
       -webkit-tap-highlight-color: transparent;
       display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    .btn-primary:hover { background: #c89666; }
+    .btn-primary:hover { filter: brightness(0.92); }
     .btn-primary:active { transform: scale(0.97); }
     .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
@@ -164,7 +172,7 @@
 
     .card {
       background: #ffffff;
-      border: 1px solid #e5e0d9;
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 20px;
     }
@@ -172,7 +180,7 @@
     .confirm-badge {
       width: 64px; height: 64px;
       border-radius: 50%;
-      background: rgba(212, 165, 116, 0.12);
+      background: color-mix(in srgb, var(--brand) 12%, transparent);
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 16px;
     }
@@ -182,7 +190,7 @@
       align-items: flex-start;
       gap: 10px;
       padding: 14px 16px;
-      background: #f3f0ea;
+      background: color-mix(in srgb, var(--brand) 6%, var(--bg));
       border-radius: 12px;
       margin-bottom: 20px;
     }
@@ -192,17 +200,17 @@
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       width: 100%; padding: 18px;
       border: none; border-radius: 14px;
-      background: #d4a574; color: #ffffff;
+      background: var(--brand); color: #ffffff;
       font-size: 17px; font-weight: 700; cursor: pointer;
       min-height: 54px; text-decoration: none;
       transition: all 0.2s;
       -webkit-tap-highlight-color: transparent;
     }
-    .tiktok-btn:hover { background: #c89666; }
+    .tiktok-btn:hover { filter: brightness(0.92); }
     .tiktok-btn:active { transform: scale(0.97); }
 
     #footer { width: 100%; max-width: 448px; margin: 40px auto 0; opacity: 0.1; user-select: none; pointer-events: none; text-align: center; }
-    .footer-text { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #8c857e; }
+    .footer-text { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
 
     @media (max-width: 479px) {
       body { padding: 20px 12px; }
@@ -270,71 +278,7 @@
       <p class="step-heading">Select your pass</p>
       <p class="step-sub">Choose your tier and how many tickets.</p>
 
-      <div class="grid grid-cols-1 gap-3" id="ticket-grid">
-        <div class="ticket-card" data-tier="General Admission" data-price="29900">
-          <span class="ticket-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-              <path dM13 5v2"/>
-              <path d="M13 17v2"/>
-              <path d="M13 11v2"/>
-            </svg>
-          </span>
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="label">General Admission</p>
-              <p class="desc">Full workshop access. Standard seating.</p>
-            </div>
-            <p class="price">₦29,900</p>
-          </div>
-          <div class="stepper">
-            <button class="stepper-btn" data-qty="dec" aria-label="Decrease quantity">−</button>
-            <span class="stepper-count">0</span>
-            <button class="stepper-btn" data-qty="inc" aria-label="Increase quantity">+</button>
-          </div>
-        </div>
-        <div class="ticket-card" data-tier="VIP" data-price="79900">
-          <span class="ticket-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-          </span>
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="label">VIP</p>
-              <p class="desc">Priority seating + meet & greet + swag bag.</p>
-            </div>
-            <p class="price">₦79,900</p>
-          </div>
-          <div class="stepper">
-            <button class="stepper-btn" data-qty="dec" aria-label="Decrease quantity">−</button>
-            <span class="stepper-count">0</span>
-            <button class="stepper-btn" data-qty="inc" aria-label="Increase quantity">+</button>
-          </div>
-        </div>
-        <div class="ticket-card" data-tier="Premium" data-price="149900">
-          <span class="ticket-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 3h12l4 6-10 13L2 9Z"/>
-              <path d="M12 22 2 9h20Z"/>
-              <path d="M12 22V3"/>
-              <path d="M2 9h20"/>
-            </svg>
-          </span>
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="label">Premium</p>
-              <p class="desc">All-access pass + VIP lounge + 1-on-1 session.</p>
-            </div>
-            <p class="price">₦149,900</p>
-          </div>
-          <div class="stepper">
-            <button class="stepper-btn" data-qty="dec" aria-label="Decrease quantity">−</button>
-            <span class="stepper-count">0</span>
-            <button class="stepper-btn" data-qty="inc" aria-label="Increase quantity">+</button>
-          </div>
-        </div>
-      </div>
+      <div class="grid grid-cols-1 gap-3" id="ticket-grid"></div>
 
       <div class="total-bar">
         <span class="tl">Total</span>
@@ -382,36 +326,36 @@
     <div class="step" id="step-3">
       <div class="text-center mb-4">
         <div class="confirm-badge">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
             <polyline points="22 4 12 14.01 9 11.01"/>
           </svg>
         </div>
-        <h2 class="font-extrabold" style="color:#2c2824;font-size:19px;">Order Confirmed, <span id="confirm-name" style="color:#d4a574;"></span></h2>
-        <p style="color:#8c857e;font-size:13px;margin-top:2px;">Your passes are reserved. Complete payment below.</p>
+        <h2 class="font-extrabold" style="color:var(--text);font-size:19px;">Order Confirmed, <span id="confirm-name" style="color:var(--brand);"></span></h2>
+        <p style="color:var(--muted);font-size:13px;margin-top:2px;">Your passes are reserved. Complete payment below.</p>
       </div>
 
       <div class="card mb-3">
         <div class="flex justify-between items-center mb-2">
-          <span style="color:#2c2824;font-size:14px;font-weight:600;">Order Summary</span>
-          <span class="font-extrabold" id="confirm-total" style="color:#d4a574;font-size:18px;">₦0</span>
+          <span style="color:var(--text);font-size:14px;font-weight:600;">Order Summary</span>
+          <span class="font-extrabold" id="confirm-total" style="color:var(--brand);font-size:18px;">₦0</span>
         </div>
         <div id="order-summary-items"></div>
       </div>
 
       <div class="card mb-3" style="padding:14px 16px;">
-        <div style="color:#8c857e;font-size:12px;">
+        <div style="color:var(--muted);font-size:12px;">
           <span id="confirm-email"></span>
         </div>
       </div>
 
       <div class="pending-notice">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8c857e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
         </svg>
         <div>
-          <p style="color:#2c2824;font-size:13px;font-weight:600;">Payment pending</p>
-          <p style="color:#8c857e;font-size:12px;margin-top:2px;">You haven't paid yet. Complete checkout on TikTok Shop to secure your spot.</p>
+          <p style="color:var(--text);font-size:13px;font-weight:600;">Payment pending</p>
+          <p style="color:var(--muted);font-size:12px;margin-top:2px;">You haven't paid yet. Complete checkout on TikTok Shop to secure your spot.</p>
         </div>
       </div>
 
@@ -421,25 +365,79 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
 
-      <p style="text-align:center;color:#b0a89f;font-size:11px;margin-top:12px;">Your order is saved. No charges yet.</p>
+      <p style="text-align:center;color:var(--light);font-size:11px;margin-top:12px;">Your order is saved. No charges yet.</p>
 
-      <button id="paid-btn" disabled style="width:100%;padding:14px;border:2px solid #d4a574;border-radius:14px;background:transparent;color:#d4a574;font-size:16px;font-weight:700;cursor:pointer;margin-top:16px;transition:all 0.25s;opacity:0.4;-webkit-tap-highlight-color:transparent;">
+      <button id="paid-btn" disabled style="width:100%;padding:14px;border:2px solid var(--brand);border-radius:14px;background:transparent;color:var(--brand);font-size:16px;font-weight:700;cursor:pointer;margin-top:16px;transition:all 0.25s;opacity:0.4;-webkit-tap-highlight-color:transparent;">
         I've Paid — Get My Ticket
       </button>
     </div>
   </div>
 
   <div id="footer">
-    <p class="footer-text">Project by Know Nation Limited</p>
+    <p class="footer-text" id="footer-text">Project by Know Nation Limited</p>
   </div>
 
   <script>
-    const state = {
+    // ═══════════════════════════════════════════════════════════════════════════
+    //  EDIT THESE to customize the form for your event
+    // ═══════════════════════════════════════════════════════════════════════════
+    const CONFIG = {
+      eventName: 'Prime Event',
+      brand: '#d4a574',
+      bg: '#f8f6f2',
+      text: '#2c2824',
+      muted: '#8c857e',
+      border: '#e5e0d9',
+      light: '#b0a89f',
+      footer: 'Project by Know Nation Limited',
+      codePrefix: 'PRIME',
       tickets: [
-        { tier: 'General Admission', price: 29900, qty: 0 },
-        { tier: 'VIP', price: 79900, qty: 0 },
-        { tier: 'Premium', price: 149900, qty: 0 },
+        { tier: 'General Admission', price: 29900, desc: 'Full workshop access. Standard seating.' },
+        { tier: 'VIP', price: 79900, desc: 'Priority seating + meet & greet + swag bag.' },
+        { tier: 'Premium', price: 149900, desc: 'All-access pass + VIP lounge + 1-on-1 session.' },
       ],
+    };
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // Apply config
+    const r = document.documentElement.style;
+    r.setProperty('--brand', CONFIG.brand);
+    r.setProperty('--bg', CONFIG.bg);
+    r.setProperty('--text', CONFIG.text);
+    r.setProperty('--muted', CONFIG.muted);
+    r.setProperty('--border', CONFIG.border);
+    r.setProperty('--light', CONFIG.light);
+    document.title = CONFIG.eventName + ' — Registration';
+    document.querySelector('.brand').textContent = CONFIG.eventName.toUpperCase();
+    document.getElementById('footer-text').textContent = CONFIG.footer;
+
+    // Render ticket cards
+    const icons = [
+      '<svg viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M12 22 2 9h20Z"/><path d="M12 22V3"/><path d="M2 9h20"/></svg>',
+    ];
+    function renderTickets() {
+      const g = document.getElementById('ticket-grid');
+      g.innerHTML = CONFIG.tickets.map((t, i) =>
+        '<div class="ticket-card" data-tier="' + t.tier + '" data-price="' + t.price + '">' +
+          '<span class="ticket-icon">' + icons[i] + '</span>' +
+          '<div class="flex items-center justify-between">' +
+            '<div><p class="label">' + t.tier + '</p><p class="desc">' + t.desc + '</p></div>' +
+            '<p class="price">₦' + t.price.toLocaleString() + '</p>' +
+          '</div>' +
+          '<div class="stepper">' +
+            '<button class="stepper-btn" data-qty="dec" aria-label="Decrease quantity">−</button>' +
+            '<span class="stepper-count">0</span>' +
+            '<button class="stepper-btn" data-qty="inc" aria-label="Increase quantity">+</button>' +
+          '</div>' +
+        '</div>'
+      ).join('');
+    }
+    renderTickets();
+
+    const state = {
+      tickets: CONFIG.tickets.map(t => ({ tier: t.tier, price: t.price, qty: 0 })),
       name: '', email: '', phone: '',
     };
 
@@ -518,7 +516,7 @@
       const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
       let r = '';
       for (let i = 0; i < 5; i++) r += chars[Math.floor(Math.random() * chars.length)];
-      return 'PRIME-' + r;
+      return CONFIG.codePrefix + '-' + r;
     }
 
     function renderSummary() {
@@ -528,8 +526,8 @@
       items.forEach(t => {
         const d = document.createElement('div');
         d.className = 'flex justify-between items-center';
-        d.innerHTML = '<span style="color:#2c2824;font-size:14px;">' + t.tier + ' <span style="color:#8c857e;">x' + t.qty + '</span></span>' +
-          '<span style="color:#2c2824;font-size:14px;font-weight:600;">₦' + (t.price * t.qty) + '</span>';
+        d.innerHTML = '<span style="color:var(--text);font-size:14px;">' + t.tier + ' <span style="color:var(--muted);">x' + t.qty + '</span></span>' +
+          '<span style="color:var(--text);font-size:14px;font-weight:600;">₦' + (t.price * t.qty).toLocaleString() + '</span>';
         c.appendChild(d);
       });
 
