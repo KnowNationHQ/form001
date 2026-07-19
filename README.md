@@ -17,7 +17,7 @@ Open any `.html` file directly in a browser — no server or build step required
 
 ## Flow
 
-1. **Tickets** — select tier (General Admission ₦29 / VIP ₦79 / Premium ₦149) and quantity
+1. **Tickets** — select tier (General Admission ₦29,900 / VIP ₦79,900 / Premium ₦149,900) and quantity
 2. **Your Details** — name, email, phone
 3. **Confirm** — order summary → TikTok Shop checkout
 
