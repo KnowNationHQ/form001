@@ -13,7 +13,7 @@ Collection of ready-to-use HTML registration forms with WhatsApp DM delivery. No
 
 3-step registration form for workshops, classes, and events. Collect attendee info and send it straight to your WhatsApp for manual payment confirmation.
 
-**Demo:** [knform001.netlify.app/workshop](https://knform001.netlify.app/workshop/)
+**Demo:** [knownation-projects.vercel.app/workshop](https://knownation-projects.vercel.app/workshop/)
 
 ### Customize
 
@@ -49,7 +49,7 @@ Upload the `workshop/` folder to any static host (Netlify, Vercel, GitHub Pages,
 
 Responsive enquiry and registration form for fitness coaches, gyms, and wellness programs.
 
-**Demo:** [knform001.netlify.app/fitness](https://knform001.netlify.app/fitness/)
+**Demo:** [knownation-projects.vercel.app/fitness](https://knownation-projects.vercel.app/fitness/)
 
 Open `fitness/index.html`, edit the config block at the top, and go live. Same zero-dependency approach.
 
