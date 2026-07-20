@@ -1,38 +1,60 @@
-# Workshop Registration System
+# Know Nation — Form Projects
 
-Clean 3-step registration form with WhatsApp DM delivery. [Live Demo](https://knform001.netlify.app/workshop/)
+Collection of ready-to-use HTML registration forms with WhatsApp DM delivery. No backend, no database, no build step.
 
-Edit one config block to rebrand for any event. No build step — just HTML.
+| Project | Description | Price |
+|---------|-------------|-------|
+| [Workshop Registration](#workshop-registration) | 3-step event registration + WhatsApp | Paid |
+| [Fitness Form](#fitness-form) | Client enquiry & registration form | Free |
 
-## Files
+---
 
-```
-workshop/index.html  ← select tickets → enter details → Pay on WhatsApp
-```
+## Workshop Registration
 
-## Usage
+3-step registration form for workshops, classes, and events. Collect attendee info and send it straight to your WhatsApp for manual payment confirmation.
 
-1. Download the zip
-2. Open `workshop/index.html` in any editor
-3. Edit the `CONFIG` block at the top:
+**Demo:** [knform001.netlify.app/workshop](https://knform001.netlify.app/workshop/)
+
+### Customize
+
+Open `workshop/index.html`, find the `CONFIG` block at the top:
 
 ```js
 const CONFIG = {
   eventName: 'Your Event',
   brand: '#d4a574',
-  whatsapp: '2348012345678',  // your WhatsApp number (country code, no +)
+  whatsapp: '2348012345678',  // your number (country code, no +)
   tickets: [
-    { tier: 'Basic', price: 5000, desc: 'Standard access' },
+    { tier: 'General Admission', price: 5000, desc: 'Full access. Standard seating.' },
+    { tier: 'VIP', price: 15000, desc: 'Priority seating + meet & greet.' },
   ],
 };
 ```
 
-4. Upload `workshop/` folder to any static host (Netlify, Vercel, GitHub Pages)
+That's it — event name, colors, ticket tiers, and your WhatsApp number in one place.
 
-## Flow
+### Flow
 
-1. Select ticket tier & quantity
-2. Enter name, email, phone
-3. Tap "Pay on WhatsApp" — opens DM to seller with registration details pre-filled
+1. **Select pass** — choose tier and quantity
+2. **Your details** — enter name, email, phone
+3. **Pay on WhatsApp** — sends a pre-filled message to you with the registration details
 
-No dependencies, no build step.
+### Deploy
+
+Upload the `workshop/` folder to any static host (Netlify, Vercel, GitHub Pages, or even a shared hosting folder). No server-side code needed.
+
+---
+
+## Fitness Form
+
+Responsive enquiry and registration form for fitness coaches, gyms, and wellness programs.
+
+**Demo:** [knform001.netlify.app/fitness](https://knform001.netlify.app/fitness/)
+
+Open `fitness/index.html`, edit the config block at the top, and go live. Same zero-dependency approach.
+
+---
+
+## License
+
+All projects are digital products. Workshop Registration is available for purchase on Selar. Fitness Form is free.
