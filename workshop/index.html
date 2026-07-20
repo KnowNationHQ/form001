@@ -43,13 +43,33 @@
     .brand { color: var(--brand); font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
     .title { color: var(--text); font-size: 24px; font-weight: 800; }
 
-    .step { display: none; animation: fadeSlide 0.3s ease-out; }
-    .step.active { display: block; }
+    .step { display: none; }
+    .step.active { display: block; animation: fadeSlide 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
 
     @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(18px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .fade-in { animation: fadeUp 0.4s ease-out both; }
+    .fade-in-d1 { animation: fadeUp 0.4s ease-out 0.05s both; }
+    .fade-in-d2 { animation: fadeUp 0.4s ease-out 0.1s both; }
+    .fade-in-d3 { animation: fadeUp 0.4s ease-out 0.15s both; }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      70% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    .check-animate svg { stroke-dasharray: 30; stroke-dashoffset: 30; animation: drawCheck 0.5s ease-out 0.35s forwards; }
+    .check-animate { animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 
     .dots {
       display: flex; justify-content: center; gap: 8px;
@@ -238,6 +258,21 @@
     #footer { width: 100%; max-width: 448px; margin: 40px auto 0; opacity: 0.1; user-select: none; pointer-events: none; text-align: center; }
     .footer-text { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
 
+    .live-preview {
+      display: flex; align-items: center; gap: 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 16px;
+      margin-bottom: 20px;
+      animation: fadeUp 0.35s ease-out both;
+    }
+    .lp-row { display: flex; align-items: center; gap: 6px; flex: 1; }
+    .lp-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .lp-value { font-size: 14px; font-weight: 700; color: var(--text); }
+    .lp-brand { color: var(--brand); }
+    .lp-divider { width: 1px; height: 24px; background: var(--border); }
+
     @media (max-width: 479px) {
       body { padding: 20px 12px; }
       .title { font-size: 21px; }
@@ -295,6 +330,18 @@
       <div class="dot active" data-dot="1"></div>
       <div class="dot" data-dot="2"></div>
       <div class="dot" data-dot="3"></div>
+    </div>
+
+    <div class="live-preview" id="live-preview" style="display:none;">
+      <div class="lp-row">
+        <span class="lp-label">Tickets</span>
+        <span class="lp-value" id="lp-tickets">0</span>
+      </div>
+      <div class="lp-divider"></div>
+      <div class="lp-row">
+        <span class="lp-label">Total</span>
+        <span class="lp-value lp-brand" id="lp-total">₦0</span>
+      </div>
     </div>
 
     <!-- Step 1: Tickets -->
@@ -544,15 +591,15 @@
       document.getElementById('confirm-name').textContent = state.name;
       document.getElementById('confirm-email').textContent = state.email + '  ·  ' + state.phone;
 
-      let msg = '🎫 *New Registration — ' + CONFIG.eventName + '*\n';
+      let msg = '*New Registration — ' + CONFIG.eventName + '*\n';
       msg += '═══════════════════════\n\n';
-      msg += '👤 *' + state.name + '*\n';
-      msg += '📧 ' + state.email + '\n';
-      msg += '📞 ' + state.phone + '\n\n';
+      msg += '*' + state.name + '*\n';
+      msg += '' + state.email + '\n';
+      msg += '' + state.phone + '\n\n';
       msg += '━ *Order* ━━━━━━━━━━━\n';
       items.forEach(t => msg += '• ' + t.tier + '  ×' + t.qty + '  ₦' + (t.price * t.qty).toLocaleString() + '\n');
       msg += '\n━━━━━━━━━━━━━━━━━━\n';
-      msg += '💳 *Total: ₦' + total.toLocaleString() + '*\n';
+      msg += '*Total: ₦' + total.toLocaleString() + '*\n';
       document.getElementById('whatsapp-link').href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg);
     }
 
