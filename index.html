@@ -8,7 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --brand: #d4a574; --bg: #f8f6f2; --text: #2c2824; --muted: #8c857e; --border: #e5e0d9; }
+    :root { --brand: #d4a574; --bg: #f8f6f2; --text: #2c2824; --muted: #8c857e; --border: #e5e0d9; --light: #b0a89f; --card: #fff; }
+    [data-theme="dark"] { --brand: #d4a574; --bg: #1a1816; --text: #e8e2dc; --muted: #8c857e; --border: #2e2a26; --light: #5c5650; --card: #242120; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -22,12 +23,11 @@
     .sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
     .list { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
     .card {
-      background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
     }
     .card h2 { font-size: 17px; font-weight: 700; color: var(--text); }
     .card .desc { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
-    .card .path { font-size: 12px; color: var(--light); font-weight: 500; margin-top: 8px; }
-    .actions { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+    .card .path { font-size: 12px; color: var(--light); font-weight: 500; margin-top: 8px; }    .actions { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
     .action-btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
       padding: 10px 18px; border: none; border-radius: 10px;
@@ -46,11 +46,25 @@
     .repo-note { font-size: 12px; color: var(--light); margin-top: 10px; }
     .repo-note a { color: var(--brand); text-decoration: none; font-weight: 500; }
     .repo-note a:hover { text-decoration: underline; }
+
+    .theme-toggle {
+      position: fixed; top: 16px; right: 16px; z-index: 100;
+      background: var(--card); border: 1px solid var(--border); border-radius: 50%;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--text); transition: all 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--brand); color: var(--brand); }
+    .theme-toggle svg { width: 20px; height: 20px; }
+
     #footer { margin-top: 48px; opacity: 0.1; user-select: none; pointer-events: none; text-align: center; }
     #footer span { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+    <svg id="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
   <div class="container">
     <div class="brand">Know Nation</div>
     <h1>Projects</h1>
@@ -87,5 +101,22 @@
     </div>
   </div>
   <div id="footer"><span>Project by Know Nation Limited</span></div>
+
+  <script>
+    (function() {
+      const html = document.documentElement;
+      const saved = localStorage.getItem('kn_theme');
+      if (saved === 'dark') html.setAttribute('data-theme', 'dark');
+      const btn = document.getElementById('theme-toggle');
+      const sun = document.getElementById('sun-icon');
+      const moon = document.getElementById('moon-icon');
+      btn.addEventListener('click', () => {
+        const isDark = html.getAttribute('data-theme') === 'dark';
+        if (isDark) { html.removeAttribute('data-theme'); localStorage.setItem('kn_theme', 'light'); sun.style.display = ''; moon.style.display = 'none'; }
+        else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('kn_theme', 'dark'); sun.style.display = 'none'; moon.style.display = ''; }
+      });
+      if (saved === 'dark') { sun.style.display = 'none'; moon.style.display = ''; }
+    })();
+  </script>
 </body>
 </html>
