@@ -396,7 +396,7 @@
     <!-- Step 3: Order Confirmation -->
     <div class="step" id="step-3">
       <div class="confirm-card">
-        <div class="confirm-check">
+        <div class="confirm-check check-animate">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
             <polyline points="22 4 12 14.01 9 11.01"/>
@@ -482,7 +482,7 @@
     function renderTickets() {
       const g = document.getElementById('ticket-grid');
       g.innerHTML = CONFIG.tickets.map((t, i) =>
-        '<div class="ticket-card" data-tier="' + t.tier + '" data-price="' + t.price + '">' +
+        '<div class="ticket-card fade-in-d' + Math.min(i + 1, 3) + '" data-tier="' + t.tier + '" data-price="' + t.price + '">' +
           '<span class="ticket-icon">' + icons[i] + '</span>' +
           '<div class="flex items-center justify-between">' +
             '<div><p class="label">' + t.tier + '</p><p class="desc">' + t.desc + '</p></div>' +
@@ -524,8 +524,18 @@
 
     function updateTotal() {
       const total = state.tickets.reduce((s, t) => s + t.price * t.qty, 0);
-      document.getElementById('total-amount').textContent = '₦' + total;
+      const qty = state.tickets.reduce((s, t) => s + t.qty, 0);
+      document.getElementById('total-amount').textContent = '₦' + total.toLocaleString();
       document.getElementById('tickets-next').disabled = total === 0;
+
+      const lp = document.getElementById('live-preview');
+      if (qty > 0) {
+        document.getElementById('lp-tickets').textContent = qty;
+        document.getElementById('lp-total').textContent = '₦' + total.toLocaleString();
+        lp.style.display = 'flex';
+      } else {
+        lp.style.display = 'none';
+      }
     }
 
     document.getElementById('tickets-next').addEventListener('click', () => {
