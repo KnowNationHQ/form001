@@ -4,7 +4,7 @@ Collection of ready-to-use HTML registration forms with WhatsApp DM delivery. No
 
 | Project | Description | Price |
 |---------|-------------|-------|
-| [Workshop Registration](#workshop-registration) | 3-step event registration + WhatsApp | Paid |
+| [Workshop Registration](#workshop-registration) | 3-step event registration + WhatsApp | Free |
 | [Fitness Form](#fitness-form) | Client enquiry & registration form | Free |
 
 ---
@@ -57,4 +57,4 @@ Open `fitness/index.html`, edit the config block at the top, and go live. Same z
 
 ## License
 
-All projects are digital products. Workshop Registration is available for purchase on Selar. Fitness Form is free.
+Both projects are free and open-source.
