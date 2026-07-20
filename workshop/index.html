@@ -501,13 +501,16 @@
       document.getElementById('confirm-name').textContent = state.name;
       document.getElementById('confirm-email').textContent = '📧 ' + state.email + '  ·  📞 ' + state.phone;
 
-      const lines = ['Hi! I would like to register for ' + CONFIG.eventName + '.'];
-      items.forEach(t => lines.push(t.tier + ' x' + t.qty + ' — ₦' + (t.price * t.qty).toLocaleString()));
-      lines.push('Total: ₦' + total.toLocaleString());
-      lines.push('Name: ' + state.name);
-      lines.push('Email: ' + state.email);
-      lines.push('Phone: ' + state.phone);
-      document.getElementById('whatsapp-link').href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(lines.join('\n'));
+      let msg = '🎫 *New Registration — ' + CONFIG.eventName + '*\n';
+      msg += '═══════════════════════\n\n';
+      msg += '👤 *' + state.name + '*\n';
+      msg += '📧 ' + state.email + '\n';
+      msg += '📞 ' + state.phone + '\n\n';
+      msg += '━ *Order* ━━━━━━━━━━━\n';
+      items.forEach(t => msg += '• ' + t.tier + '  ×' + t.qty + '  ₦' + (t.price * t.qty).toLocaleString() + '\n');
+      msg += '\n━━━━━━━━━━━━━━━━━━\n';
+      msg += '💳 *Total: ₦' + total.toLocaleString() + '*\n';
+      document.getElementById('whatsapp-link').href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg);
     }
 
     function resetForm() {
