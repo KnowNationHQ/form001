@@ -24,6 +24,33 @@
     h1 { font-size: 28px; font-weight: 800; color: var(--text); margin-top: 6px; }
     .sub { color: var(--muted); font-size: 15px; margin-top: 6px; line-height: 1.5; }
 
+    .tech-bar {
+      margin-top: 20px; overflow: hidden; width: 100%;
+      mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    }
+    .tech-bar-inner {
+      display: flex; gap: 24px; width: max-content;
+      animation: techScroll 90s linear infinite;
+    }
+    .tech-bar-inner:hover { animation-play-state: paused; }
+    @keyframes techScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .tech-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      white-space: nowrap; padding: 4px 0;
+    }
+    .tech-item .cat {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; color: var(--brand);
+      background: rgba(212,165,116,0.1); padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .tech-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+
     .search-wrap {
       position: relative; margin-top: 24px;
     }
@@ -174,6 +201,20 @@
     <div class="brand">Know Nation</div>
     <h1>Projects</h1>
     <p class="sub">Digital products for your business</p>
+
+    <div class="tech-bar">
+      <div class="tech-bar-inner">
+        <span class="tech-item"><span class="cat">Stack</span>HTML5<span class="tech-dot"></span>Tailwind CSS<span class="tech-dot"></span>Vanilla JS<span class="tech-dot"></span>Vercel</span>
+        <span class="tech-item"><span class="cat">Frameworks</span>None<span class="tech-dot"></span>Pure static<span class="tech-dot"></span>Zero deps</span>
+        <span class="tech-item"><span class="cat">Languages</span>HTML<span class="tech-dot"></span>CSS<span class="tech-dot"></span>JavaScript</span>
+        <span class="tech-item"><span class="cat">AI/LLMs</span>Claude<span class="tech-dot"></span>OpenCode<span class="tech-dot"></span>Cursor</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="tech-item"><span class="cat">Stack</span>HTML5<span class="tech-dot"></span>Tailwind CSS<span class="tech-dot"></span>Vanilla JS<span class="tech-dot"></span>Vercel</span>
+        <span class="tech-item"><span class="cat">Frameworks</span>None<span class="tech-dot"></span>Pure static<span class="tech-dot"></span>Zero deps</span>
+        <span class="tech-item"><span class="cat">Languages</span>HTML<span class="tech-dot"></span>CSS<span class="tech-dot"></span>JavaScript</span>
+        <span class="tech-item"><span class="cat">AI/LLMs</span>Claude<span class="tech-dot"></span>OpenCode<span class="tech-dot"></span>Cursor</span>
+      </div>
+    </div>
 
     <div class="search-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
