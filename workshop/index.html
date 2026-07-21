@@ -361,13 +361,14 @@
       overflow-y: auto; overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
       border-radius: 0 0 42px 42px; padding: 0 16px 32px;
+      position: relative;
     }
     .phone-frame.device-phone #app::-webkit-scrollbar { width: 3px; }
     .phone-frame.device-phone #app::-webkit-scrollbar-track { background: transparent; }
     .phone-frame.device-phone #app::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
     .phone-frame.device-phone .frame-notch { display: flex; justify-content: center; padding: 12px 0 0; flex-shrink: 0; }
     .phone-frame.device-phone .frame-home-bar { display: flex; justify-content: center; padding: 8px 0 10px; flex-shrink: 0; }
-    .phone-frame.device-phone .status-bar { display: flex; }
+    .phone-frame.device-phone .status-bar { display: flex; position: sticky; top: 0; z-index: 2; background: var(--bg); }
 
     .phone-frame.device-tablet {
       background: #0a0a0a; border-radius: 24px; padding: 0;
@@ -378,9 +379,9 @@
     .phone-frame.device-tablet #app {
       background: var(--bg); max-width: none; width: 100%; flex: 1;
       overflow-y: auto; overflow-x: hidden;
-      padding: 0 24px 28px;
+      padding: 0 24px 28px; position: relative;
     }
-    .phone-frame.device-tablet .status-bar { display: flex; padding: 0 12px; }
+    .phone-frame.device-tablet .status-bar { display: flex; padding: 0 12px; position: sticky; top: 0; z-index: 2; background: var(--bg); }
 
     .phone-frame.device-desktop {
       background: transparent; border-radius: 0; padding: 0;
@@ -438,6 +439,7 @@
       <div class="right"><div></div></div>
     </div>
     <div class="frame-notch"><div class="dynamic-island"></div></div>
+    <div id="app">
     <div class="status-bar">
       <div class="sb-left">9:41</div>
       <div class="sb-center">KnowNationHQ</div>
@@ -447,8 +449,7 @@
         <svg width="22" height="12" viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="20" height="11" rx="2" stroke="currentColor" fill="none" stroke-width="1"/><rect x="22" y="3.5" width="3" height="5" rx="1" fill="currentColor" opacity="0.4"/><rect x="2.5" y="2.5" width="16" height="7" rx="1" fill="currentColor"/></svg>
       </div>
     </div>
-    <div id="app">
-    <div class="text-center mb-6">
+    <div class="text-center mb-6" style="padding-top:12px">
       <div class="brand">Your Event</div>
       <h1 class="title mt-1" id="page-title">Workshop Registration</h1>
     </div>
