@@ -8,44 +8,77 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --brand: #d4a574; --bg: #f8f6f2; --text: #2c2824; --muted: #8c857e; --border: #e5e0d9; --light: #b0a89f; --card: #fff; }
-    [data-theme="dark"] { --brand: #d4a574; --bg: #1a1816; --text: #e8e2dc; --muted: #8c857e; --border: #2e2a26; --light: #5c5650; --card: #242120; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --brand: #d4a574; --bg: #f8f6f2; --text: #2c2824; --muted: #8c857e; --border: #e5e0d9; --card: #fff; }
+    [data-theme="dark"] { --brand: #d4a574; --bg: #1a1816; --text: #e8e2dc; --muted: #8c857e; --border: #2e2a26; --card: #242120; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
+      background: var(--bg); color: var(--text);
       display: flex; flex-direction: column; align-items: center;
       min-height: 100dvh; padding: 48px 20px;
+      -webkit-font-smoothing: antialiased;
     }
-    .container { width: 100%; max-width: 480px; }
-    .brand { color: var(--brand); font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
-    h1 { font-size: 26px; font-weight: 800; color: var(--text); margin-top: 4px; }
-    .sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
-    .list { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .container { width: 100%; max-width: 520px; }
+
+    .brand { color: var(--brand); font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+    h1 { font-size: 28px; font-weight: 800; color: var(--text); margin-top: 6px; }
+    .sub { color: var(--muted); font-size: 15px; margin-top: 6px; line-height: 1.5; }
+
+    .section { margin-top: 40px; }
+    .section-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px;
+    }
+    .section-header h2 {
+      font-size: 15px; font-weight: 700; color: var(--muted);
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .section-header .line { flex: 1; height: 1px; background: var(--border); }
+
     .card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px;
+      transition: all 0.2s;
     }
-    .card h2 { font-size: 17px; font-weight: 700; color: var(--text); }
-    .card .desc { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
-    .card .path { font-size: 12px; color: var(--light); font-weight: 500; margin-top: 8px; }    .actions { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+    .card:hover { border-color: var(--brand); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    [data-theme="dark"] .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .card + .card { margin-top: 12px; }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+      padding: 3px 10px; border-radius: 99px;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .badge.form { background: rgba(212,165,116,0.12); color: var(--brand); }
+    .badge.soon { background: var(--border); color: var(--muted); }
+
+    .card h3 { font-size: 17px; font-weight: 700; color: var(--text); }
+    .card .desc { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.55; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .tags span {
+      font-size: 11px; font-weight: 500; color: var(--muted);
+      background: var(--bg); padding: 3px 10px; border-radius: 99px;
+    }
+
+    .actions { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
     .action-btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      padding: 10px 18px; border: none; border-radius: 10px;
+      padding: 9px 16px; border: none; border-radius: 10px;
       font-size: 13px; font-weight: 700; text-decoration: none;
-      transition: all 0.2s; cursor: pointer;
+      transition: all 0.2s; cursor: pointer; flex-shrink: 0;
     }
+    .action-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
     .action-btn.primary { background: var(--brand); color: #fff; }
     .action-btn.primary:hover { filter: brightness(0.92); }
     .action-btn.outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
     .action-btn.outline:hover { border-color: var(--brand); color: var(--brand); }
     .action-btn.ghost { background: transparent; color: var(--muted); padding: 8px; border-radius: 8px; }
     .action-btn.ghost:hover { color: var(--text); background: var(--bg); }
-    .action-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
     .action-btn.free { background: #e8f5e9; color: #2e7d32; }
     .action-btn.free:hover { filter: brightness(0.95); }
-    .repo-note { font-size: 12px; color: var(--light); margin-top: 10px; }
-    .repo-note a { color: var(--brand); text-decoration: none; font-weight: 500; }
-    .repo-note a:hover { text-decoration: underline; }
+    .action-btn.disabled { opacity: 0.4; cursor: default; pointer-events: none; }
 
     .theme-toggle {
       position: fixed; top: 16px; right: 16px; z-index: 100;
@@ -65,41 +98,105 @@
     <svg id="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     <svg id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
   </button>
+
   <div class="container">
     <div class="brand">Know Nation</div>
     <h1>Projects</h1>
     <p class="sub">Digital products for your business</p>
 
-    <div class="list">
+    <div class="section">
+      <div class="section-header">
+        <h2>Forms</h2>
+        <div class="line"></div>
+      </div>
+
       <div class="card">
-        <h2>Workshop Registration</h2>
+        <span class="badge form">Form</span>
+        <h3>Workshop Registration</h3>
         <div class="desc">3-step registration form for workshops and events. Collect attendee info and send it to your WhatsApp DM for payment confirmation.</div>
-        <div class="path">/workshop</div>
+        <div class="tags">
+          <span>3-step</span>
+          <span>WhatsApp</span>
+          <span>Free</span>
+        </div>
         <div class="actions">
-          <a class="action-btn ghost" href="https://github.com/KnowNationHQ/form001" target="_blank" title="Documentation">
+          <a class="action-btn ghost" href="https://github.com/KnowNationHQ/form001" target="_blank" title="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
           </a>
           <a class="action-btn free" href="workshop-registration-system.zip">Free Download</a>
           <a class="action-btn outline" href="workshop/">Live Demo</a>
         </div>
-        <div class="repo-note">Full setup guide on <a href="https://github.com/KnowNationHQ/form001" target="_blank">GitHub</a></div>
       </div>
 
       <div class="card">
-        <h2>Fitness Form</h2>
-        <div class="desc">Responsive enquiry and registration form for fitness coaches and gyms. Collect client details and preferences direct to your WhatsApp.</div>
-        <div class="path">/fitness</div>
+        <span class="badge form">Form</span>
+        <h3>Fitness Form</h3>
+        <div class="desc">Enquiry and registration form for fitness coaches and gyms. Collect client goals, commitment level, and contact details to your WhatsApp.</div>
+        <div class="tags">
+          <span>3-step</span>
+          <span>WhatsApp</span>
+          <span>Free</span>
+        </div>
         <div class="actions">
-          <a class="action-btn ghost" href="https://github.com/KnowNationHQ/form001" target="_blank" title="Documentation">
+          <a class="action-btn ghost" href="https://github.com/KnowNationHQ/form001" target="_blank" title="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
           </a>
           <a class="action-btn free" href="workshop-registration-system.zip">Free Download</a>
           <a class="action-btn outline" href="fitness/">Live Demo</a>
         </div>
-        <div class="repo-note">Full setup guide on <a href="https://github.com/KnowNationHQ/form001" target="_blank">GitHub</a></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <h2>Coming Soon</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="card">
+        <span class="badge soon">Soon</span>
+        <h3>Booking System</h3>
+        <div class="desc">Appointment and service booking form with calendar selection, time slots, and automated reminders.</div>
+        <div class="tags">
+          <span>Calendar</span>
+          <span>Reminders</span>
+          <span>Paid</span>
+        </div>
+        <div class="actions">
+          <span class="action-btn outline disabled">In Development</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="badge soon">Soon</span>
+        <h3>Payment Page</h3>
+        <div class="desc">Standalone checkout page with payment gateway integration for digital products and services.</div>
+        <div class="tags">
+          <span>Checkout</span>
+          <span>Paystack</span>
+          <span>Paid</span>
+        </div>
+        <div class="actions">
+          <span class="action-btn outline disabled">In Development</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="badge soon">Soon</span>
+        <h3>Survey Builder</h3>
+        <div class="desc">Multi-page survey tool with conditional logic, progress tracking, and exportable results.</div>
+        <div class="tags">
+          <span>Logic</span>
+          <span>Export</span>
+          <span>Paid</span>
+        </div>
+        <div class="actions">
+          <span class="action-btn outline disabled">In Development</span>
+        </div>
       </div>
     </div>
   </div>
+
   <div id="footer"><span>Project by Know Nation Limited</span></div>
 
   <script>
