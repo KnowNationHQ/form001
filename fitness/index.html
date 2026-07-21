@@ -353,17 +353,6 @@
 
     .phone-frame { transition: all 0.35s ease; width: 100%; position: relative; }
 
-    .frame-colors {
-      display: none; justify-content: center; gap: 8px; margin: 0 auto 14px;
-    }
-    .frame-colors.show { display: flex; }
-    .frame-colors button {
-      width: 22px; height: 22px; border-radius: 50%; border: 2px solid #44403c;
-      cursor: pointer; transition: all 0.2s; padding: 0; flex-shrink: 0;
-    }
-    .frame-colors button.active { border-color: #a3e635; transform: scale(1.2); box-shadow: 0 0 0 2px #0c0a09; }
-    .frame-colors button:hover { transform: scale(1.1); }
-
     .phone-frame.device-phone {
       background: var(--fb, #0a0a0a); border-radius: 55px; padding: 0 6px;
       max-width: 393px; height: 852px; margin: 0 auto; overflow: hidden;
@@ -440,17 +429,6 @@
     <button data-device="phone" class="active">📱 Phone</button>
     <button data-device="tablet">📟 Tablet</button>
     <button data-device="desktop">🖥️ Desktop</button>
-  </div>
-
-  <div class="frame-colors show" id="frame-colors">
-    <button data-bezel="#0a0a0a" data-border="rgba(255,255,255,0.1)" data-hi="rgba(255,255,255,0.85)" style="background:#0a0a0a" class="active" title="Black"></button>
-    <button data-bezel="#e8e8e8" data-border="rgba(0,0,0,0.12)" data-hi="rgba(0,0,0,0.5)" style="background:#e8e8e8" title="White"></button>
-    <button data-bezel="#c8d4de" data-border="rgba(0,0,0,0.1)" data-hi="rgba(0,0,0,0.4)" style="background:#c8d4de" title="Mist Blue"></button>
-    <button data-bezel="#c8d0c0" data-border="rgba(0,0,0,0.1)" data-hi="rgba(0,0,0,0.4)" style="background:#c8d0c0" title="Sage"></button>
-    <button data-bezel="#d0c8d8" data-border="rgba(0,0,0,0.1)" data-hi="rgba(0,0,0,0.4)" style="background:#d0c8d8" title="Lavender"></button>
-    <button data-bezel="#d8d8d8" data-border="rgba(0,0,0,0.12)" data-hi="rgba(0,0,0,0.5)" style="background:#d8d8d8" title="Silver"></button>
-    <button data-bezel="#d4a888" data-border="rgba(0,0,0,0.1)" data-hi="rgba(0,0,0,0.4)" style="background:#d4a888" title="Cosmic Orange"></button>
-    <button data-bezel="#384860" data-border="rgba(255,255,255,0.08)" data-hi="rgba(255,255,255,0.85)" style="background:#384860" title="Deep Blue"></button>
   </div>
 
   <div class="page-nav">
@@ -747,24 +725,11 @@
 
     // Device selector
     const frame = document.getElementById('phone-frame');
-    const colorSwatches = document.getElementById('frame-colors');
     document.querySelectorAll('.device-selector button').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelector('.device-selector .active').classList.remove('active');
         btn.classList.add('active');
         frame.className = 'phone-frame device-' + btn.dataset.device;
-        colorSwatches.classList.toggle('show', btn.dataset.device === 'phone');
-      });
-    });
-
-    // Frame color swatches
-    document.querySelectorAll('.frame-colors button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelector('.frame-colors .active')?.classList.remove('active');
-        btn.classList.add('active');
-        frame.style.setProperty('--fb', btn.dataset.bezel);
-        frame.style.setProperty('--fo', btn.dataset.border);
-        frame.style.setProperty('--hi', btn.dataset.hi);
       });
     });
   </script>
