@@ -332,15 +332,17 @@
     .phone-frame { transition: all 0.35s ease; width: 100%; }
     .phone-frame.frame-mode {
       background: #0a0a0a; border-radius: 44px; padding: 0 8px;
-      max-width: 393px; margin: 0 auto; position: relative;
+      max-width: 393px; height: 844px; margin: 0 auto; overflow: hidden;
+      display: flex; flex-direction: column;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px rgba(0,0,0,0.15);
     }
     .phone-frame.frame-mode #app {
-      background: var(--bg); max-width: none; width: 100%;
+      background: var(--bg); max-width: none; width: 100%; flex: 1;
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
       border-radius: 0 0 36px 36px; padding: 56px 16px 32px;
     }
-    .phone-frame.frame-mode .frame-notch { display: flex; justify-content: center; padding: 10px 0 6px; }
-    .phone-frame.frame-mode .frame-home-bar { display: flex; justify-content: center; padding: 8px 0 10px; }
+    .phone-frame.frame-mode .frame-notch { display: flex; justify-content: center; padding: 10px 0 6px; flex-shrink: 0; }
+    .phone-frame.frame-mode .frame-home-bar { display: flex; justify-content: center; padding: 8px 0 10px; flex-shrink: 0; }
     .phone-frame:not(.frame-mode) .frame-notch,
     .phone-frame:not(.frame-mode) .frame-home-bar { display: none; }
 
