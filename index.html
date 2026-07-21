@@ -24,14 +24,31 @@
     h1 { font-size: 28px; font-weight: 800; color: var(--text); margin-top: 6px; }
     .sub { color: var(--muted); font-size: 15px; margin-top: 6px; line-height: 1.5; }
 
-    .section { margin-top: 40px; }
+    .search-wrap {
+      position: relative; margin-top: 24px;
+    }
+    .search-wrap svg {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      width: 16px; height: 16px; color: var(--muted); pointer-events: none;
+    }
+    .search-wrap input {
+      width: 100%; padding: 12px 14px 12px 40px;
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--card); color: var(--text);
+      font-size: 14px; font-family: inherit; outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-wrap input:focus { border-color: var(--brand); }
+    .search-wrap input::placeholder { color: var(--muted); }
+
+    .section { margin-top: 32px; }
     .section-header {
       display: flex; align-items: center; gap: 10px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .section-header h2 {
-      font-size: 15px; font-weight: 700; color: var(--muted);
-      letter-spacing: 0.5px; text-transform: uppercase;
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      letter-spacing: 0.8px; text-transform: uppercase; white-space: nowrap;
     }
     .section-header .line { flex: 1; height: 1px; background: var(--border); }
 
@@ -43,6 +60,7 @@
     .card:hover { border-color: var(--brand); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
     [data-theme="dark"] .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
     .card + .card { margin-top: 12px; }
+    .card.hidden { display: none; }
 
     .badge {
       display: inline-block;
@@ -56,11 +74,14 @@
     .card h3 { font-size: 17px; font-weight: 700; color: var(--text); }
     .card .desc { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.55; }
 
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
     .tags span {
-      font-size: 11px; font-weight: 500; color: var(--muted);
-      background: var(--bg); padding: 3px 10px; border-radius: 99px;
+      font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px;
     }
+    .tags .t-free { background: #e8f5e9; color: #2e7d32; }
+    .tags .t-paid { background: #fff3e0; color: #e65100; }
+    .tags .t-tech { background: #e3f2fd; color: #1565c0; }
+    .tags .t-gray { background: var(--bg); color: var(--muted); }
 
     .actions { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
     .action-btn {
@@ -79,6 +100,12 @@
     .action-btn.free { background: #e8f5e9; color: #2e7d32; }
     .action-btn.free:hover { filter: brightness(0.95); }
     .action-btn.disabled { opacity: 0.4; cursor: default; pointer-events: none; }
+
+    .no-results {
+      display: none; text-align: center; padding: 40px 20px;
+      color: var(--muted); font-size: 14px;
+    }
+    .no-results.show { display: block; }
 
     .theme-toggle {
       position: fixed; top: 16px; right: 16px; z-index: 100;
@@ -104,20 +131,25 @@
     <h1>Projects</h1>
     <p class="sub">Digital products for your business</p>
 
-    <div class="section">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search" type="search" placeholder="Search projects..." autocomplete="off">
+    </div>
+
+    <div class="section" data-section="forms">
       <div class="section-header">
         <h2>Forms</h2>
         <div class="line"></div>
       </div>
 
-      <div class="card">
+      <div class="card" data-search="workshop registration 3-step whatsapp free">
         <span class="badge form">Form</span>
         <h3>Workshop Registration</h3>
-        <div class="desc">3-step registration form for workshops and events. Collect attendee info and send it to your WhatsApp DM for payment confirmation.</div>
+        <div class="desc">3-step registration form for workshops and events. Collect attendee info and send directly to your WhatsApp for payment confirmation.</div>
         <div class="tags">
-          <span>3-step</span>
-          <span>WhatsApp</span>
-          <span>Free</span>
+          <span class="t-tech">3-step</span>
+          <span class="t-tech">WhatsApp</span>
+          <span class="t-free">Free</span>
         </div>
         <div class="actions">
           <a class="action-btn ghost" href="https://github.com/KnowNationHQ/form001" target="_blank" title="GitHub">
@@ -128,14 +160,14 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-search="fitness form enquiry registration client goals whatsapp free">
         <span class="badge form">Form</span>
         <h3>Fitness Form</h3>
         <div class="desc">Enquiry and registration form for fitness coaches and gyms. Collect client goals, commitment level, and contact details to your WhatsApp.</div>
         <div class="tags">
-          <span>3-step</span>
-          <span>WhatsApp</span>
-          <span>Free</span>
+          <span class="t-tech">WhatsApp</span>
+          <span class="t-tech">3-step</span>
+          <span class="t-free">Free</span>
         </div>
         <div class="actions">
           <a class="action-btn ghost" href="https://github.com/KnowNationHQ/form001" target="_blank" title="GitHub">
@@ -147,54 +179,56 @@
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" data-section="soon">
       <div class="section-header">
         <h2>Coming Soon</h2>
         <div class="line"></div>
       </div>
 
-      <div class="card">
+      <div class="card" data-search="booking system appointment calendar reminders paid">
         <span class="badge soon">Soon</span>
         <h3>Booking System</h3>
         <div class="desc">Appointment and service booking form with calendar selection, time slots, and automated reminders.</div>
         <div class="tags">
-          <span>Calendar</span>
-          <span>Reminders</span>
-          <span>Paid</span>
+          <span class="t-tech">Calendar</span>
+          <span class="t-tech">Reminders</span>
+          <span class="t-paid">Paid</span>
         </div>
         <div class="actions">
           <span class="action-btn outline disabled">In Development</span>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-search="payment page checkout paystack gateway paid">
         <span class="badge soon">Soon</span>
         <h3>Payment Page</h3>
         <div class="desc">Standalone checkout page with payment gateway integration for digital products and services.</div>
         <div class="tags">
-          <span>Checkout</span>
-          <span>Paystack</span>
-          <span>Paid</span>
+          <span class="t-tech">Checkout</span>
+          <span class="t-tech">Paystack</span>
+          <span class="t-paid">Paid</span>
         </div>
         <div class="actions">
           <span class="action-btn outline disabled">In Development</span>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-search="survey builder multi-page conditional logic export paid">
         <span class="badge soon">Soon</span>
         <h3>Survey Builder</h3>
         <div class="desc">Multi-page survey tool with conditional logic, progress tracking, and exportable results.</div>
         <div class="tags">
-          <span>Logic</span>
-          <span>Export</span>
-          <span>Paid</span>
+          <span class="t-tech">Logic</span>
+          <span class="t-tech">Export</span>
+          <span class="t-paid">Paid</span>
         </div>
         <div class="actions">
           <span class="action-btn outline disabled">In Development</span>
         </div>
       </div>
     </div>
+
+    <div class="no-results" id="no-results">No projects match your search</div>
   </div>
 
   <div id="footer"><span>Project by Know Nation Limited</span></div>
@@ -213,6 +247,26 @@
         else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('kn_theme', 'dark'); sun.style.display = 'none'; moon.style.display = ''; }
       });
       if (saved === 'dark') { sun.style.display = 'none'; moon.style.display = ''; }
+
+      const search = document.getElementById('search');
+      const sections = document.querySelectorAll('.section');
+      const noResults = document.getElementById('no-results');
+      search.addEventListener('input', () => {
+        const q = search.value.toLowerCase().trim();
+        let anyVisible = false;
+        sections.forEach(section => {
+          const cards = section.querySelectorAll('.card');
+          let hasVisible = false;
+          cards.forEach(card => {
+            const match = !q || card.dataset.search.includes(q);
+            card.classList.toggle('hidden', !match);
+            if (match) hasVisible = true;
+          });
+          section.style.display = hasVisible ? '' : 'none';
+          if (hasVisible) anyVisible = true;
+        });
+        noResults.classList.toggle('show', !anyVisible && q.length > 0);
+      });
     })();
   </script>
 </body>
