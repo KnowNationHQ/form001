@@ -340,25 +340,42 @@
     .frame-toggle button:hover { border-color: #a3e635; color: #a3e635; }
     .frame-toggle button svg { width: 16px; height: 16px; }
 
-    .phone-frame { transition: all 0.35s ease; width: 100%; }
+    .phone-frame { transition: all 0.35s ease; width: 100%; position: relative; }
     .phone-frame.frame-mode {
-      background: #0a0a0a; border-radius: 44px; padding: 0 8px;
+      background: #0a0a0a; border-radius: 52px; padding: 0 6px;
       max-width: 393px; height: 844px; margin: 0 auto; overflow: hidden;
       display: flex; flex-direction: column;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px rgba(0,0,0,0.5);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 0 0 3px #1a1a1a,
+        0 25px 80px rgba(0,0,0,0.4);
     }
+
+    .frame-buttons { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+    .frame-buttons .left { position: absolute; left: -3px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+    .frame-buttons .left div { width: 3px; background: #1a1a1a; border-radius: 0 2px 2px 0; }
+    .frame-buttons .left .vol-up { height: 32px; }
+    .frame-buttons .left .vol-down { height: 32px; }
+    .frame-buttons .left .action-btn { height: 20px; margin-top: 4px; }
+    .frame-buttons .right { position: absolute; right: -3px; top: 50%; transform: translateY(-50%); }
+    .frame-buttons .right div { width: 3px; height: 50px; background: #1a1a1a; border-radius: 2px 0 0 2px; }
+
     .phone-frame.frame-mode #app {
       background: #0c0a09; max-width: none; width: 100%; flex: 1;
-      overflow-y: auto; -webkit-overflow-scrolling: touch;
-      border-radius: 0 0 36px 36px; padding: 56px 16px 32px;
+      overflow-y: auto; overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 0 0 42px 42px; padding: 56px 16px 32px;
     }
-    .phone-frame.frame-mode .frame-notch { display: flex; justify-content: center; padding: 10px 0 6px; flex-shrink: 0; }
+    .phone-frame.frame-mode #app::-webkit-scrollbar { width: 3px; }
+    .phone-frame.frame-mode #app::-webkit-scrollbar-track { background: transparent; }
+    .phone-frame.frame-mode #app::-webkit-scrollbar-thumb { background: #44403c; border-radius: 99px; }
+    .phone-frame.frame-mode .frame-notch { display: flex; justify-content: center; padding: 12px 0 8px; flex-shrink: 0; }
     .phone-frame.frame-mode .frame-home-bar { display: flex; justify-content: center; padding: 8px 0 10px; flex-shrink: 0; }
     .phone-frame:not(.frame-mode) .frame-notch,
     .phone-frame:not(.frame-mode) .frame-home-bar { display: none; }
 
-    .dynamic-island { width: 120px; height: 30px; background: #000; border-radius: 20px; }
-    .home-indicator { width: 134px; height: 5px; background: #fff; border-radius: 99px; opacity: 0.3; }
+    .dynamic-island { width: 108px; height: 32px; background: #000; border-radius: 20px; }
+    .home-indicator { width: 130px; height: 5px; background: #fff; border-radius: 99px; opacity: 0.25; }
   </style>
 </head>
 <body>
@@ -371,6 +388,10 @@
   </div>
 
   <div class="phone-frame frame-mode" id="phone-frame">
+    <div class="frame-buttons">
+      <div class="left"><div class="vol-up"></div><div class="vol-down"></div><div class="action-btn"></div></div>
+      <div class="right"><div></div></div>
+    </div>
     <div class="frame-notch"><div class="dynamic-island"></div></div>
     <div id="app">
     <div class="text-center mb-8">
