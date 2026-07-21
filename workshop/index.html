@@ -317,6 +317,16 @@
       .error-msg { font-size: 12px; }
     }
 
+    .page-nav {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin-bottom: 12px; font-size: 13px; font-weight: 500;
+    }
+    .page-nav a { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .page-nav a:hover { color: var(--brand); }
+    .page-nav a svg { width: 14px; height: 14px; }
+    .page-nav .nav-current { color: var(--text); font-weight: 600; }
+    .page-nav .disabled { opacity: 0.2; }
+
     .frame-toggle {
       display: flex; justify-content: center; margin-bottom: 12px;
     }
@@ -374,6 +384,15 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
       <span id="frame-label">Phone Frame</span>
     </button>
+  </div>
+
+  <div class="page-nav">
+    <a href="../fitness/" class="nav-arrow">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Fitness
+    </a>
+    <span class="nav-current">Workshop</span>
+    <span class="nav-arrow disabled"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </div>
 
   <div class="phone-frame frame-mode" id="phone-frame">
