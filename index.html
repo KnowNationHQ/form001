@@ -272,6 +272,24 @@
 
     body { padding-top: 72px; }
 
+    @media (max-width: 400px) {
+      h1 { font-size: 24px; }
+      .card { padding: 16px; }
+      .action-btn.ghost { padding: 6px; }
+      .action-btn { font-size: 12px; padding: 8px 12px; }
+      .action-btn.free { padding: 8px 14px; }
+      .modal .social-row a { padding: 8px 14px; font-size: 12px; }
+      .modal .social-row a svg { width: 15px; height: 15px; }
+      .modal { padding: 28px 20px 20px; }
+    }
+    @media (max-width: 359px) {
+      .nav-logo { height: 34px; }
+      .nav { padding: 8px 12px; }
+      body { padding-top: 60px; }
+      .modal .icon-wrap { width: 44px; height: 44px; }
+      .modal .icon-wrap svg { width: 22px; height: 22px; }
+    }
+
     #footer { margin-top: 48px; opacity: 0.1; user-select: none; pointer-events: none; text-align: center; }
     #footer span { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
   </style>
