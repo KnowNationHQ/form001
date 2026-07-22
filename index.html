@@ -177,6 +177,10 @@
     }
     .modal .btn-close:hover { color: var(--text); }
 
+    .logo-fixed {
+      position: fixed; top: 12px; left: 16px; z-index: 100;
+      width: 110px; height: auto;
+    }
     .theme-toggle {
       position: fixed; top: 16px; right: 16px; z-index: 100;
       background: var(--card); border: 1px solid var(--border); border-radius: 50%;
@@ -196,8 +200,8 @@
     <svg id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
   </button>
 
+  <img class="logo-fixed" src="logo.png" alt="Know Nation">
   <div class="container">
-    <img src="logo.png" alt="Know Nation" style="display:block;width:140px;height:auto;margin:0 auto 8px">
     <h1>Projects</h1>
     <p class="sub">Digital products for your business</p>
 
