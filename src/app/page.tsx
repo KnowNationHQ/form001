@@ -137,8 +137,7 @@ export default function HomePage() {
     <>
       <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-2.5 bg-background border-b">
         <a href="/">
-          <img src="/knownation004.png" alt="Know Nation" className="h-10 w-auto dark:hidden" />
-          <img src="/logo-light.png" alt="Know Nation" className="h-10 w-auto hidden dark:block" />
+          <img src={isDark ? "/logo-light.png" : "/knownation004.png"} alt="Know Nation" className="h-10 w-auto" />
         </a>
         <div className="flex items-center gap-2">
           <ThemeToggle />
@@ -157,8 +156,7 @@ export default function HomePage() {
               </button>
             </div>
             <a href="/" onClick={() => setMenuOpen(false)}>
-              <img src="/knownation004.png" alt="Know Nation" className="w-40 mx-auto mb-6 dark:hidden" />
-              <img src="/logo-light.png" alt="Know Nation" className="w-40 mx-auto mb-6 hidden dark:block" />
+              <img src={isDark ? "/logo-light.png" : "/knownation004.png"} alt="Know Nation" className="w-40 mx-auto mb-6" />
             </a>
             <div className="space-y-1">
               <a href="/" className="flex items-center gap-3 px-3 py-3.5 rounded-xl text-sm font-semibold hover:bg-muted transition-colors">
