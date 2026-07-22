@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { Search, Menu, X, Home, FileText, Heart, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -98,7 +98,20 @@ export default function HomePage() {
   const [modalFile, setModalFile] = useState('');
   const [viewerIdx, setViewerIdx] = useState(0);
   const [downloaded, setDownloaded] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
   const viewerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsDark(document.documentElement.classList.contains('dark'));
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    const next = !document.documentElement.classList.contains('dark');
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem('kn_theme', next ? 'dark' : 'light');
+    setIsDark(next);
+  }, []);
 
   const openViewer = useCallback((idx: number) => {
     setViewerIdx(idx);
@@ -142,7 +155,6 @@ export default function HomePage() {
               <button className="p-2 rounded-lg hover:bg-muted transition-colors" onClick={() => setMenuOpen(false)}>
                 <X className="h-5 w-5" />
               </button>
-              <ThemeToggle />
             </div>
             <a href="/" onClick={() => setMenuOpen(false)}>
               <img src="/knownation004.png" alt="Know Nation" className="w-40 mx-auto mb-6 dark:hidden" />
@@ -167,7 +179,18 @@ export default function HomePage() {
               </a>
             </div>
             <div className="flex-1" />
-            <div className="text-[11px] text-muted-foreground text-center py-4">
+            <div className="flex items-center justify-between px-3 py-2.5 mb-3 rounded-xl bg-muted/50">
+              <span className="text-xs font-semibold tracking-wide">Dark Mode</span>
+              <button
+                onClick={toggleTheme}
+                className={`relative inline-flex h-6 w-10 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${isDark ? 'bg-primary' : 'bg-input'}`}
+                role="switch"
+                aria-checked={isDark}
+              >
+                <span className={`pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform duration-200 ease-in-out ${isDark ? 'translate-x-4' : 'translate-x-0'}`} />
+              </button>
+            </div>
+            <div className="text-[11px] text-muted-foreground text-center py-3">
               &copy; Know Nation Ltd
             </div>
           </div>
