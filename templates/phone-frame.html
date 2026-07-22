@@ -19,7 +19,7 @@
     :root{--brand:#0891B2;--brand-dark:#066F8A;--bg:#fafafa;--text:#0c0a09;--muted:#6b7280;--border:#e5e7eb;--card:#fff;--error:#e11d48;--success:#16a34a}
     body{
       font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
-      min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+      display:flex;flex-direction:column;align-items:center;min-height:100dvh;
       -webkit-font-smoothing:antialiased;overflow-x:hidden;padding:20px 16px 40px
     }
 
@@ -39,8 +39,8 @@
     .phone-frame{transition:all .35s ease;width:100%;position:relative}
 
     .phone-frame.device-phone {
-      background:var(--fb,#0a0a0a);border-radius:55px;padding:0 6px;
-      max-width:393px;height:852px;margin:0 auto;overflow:hidden;
+      background: var(--fb,#0a0a0a);border-radius:55px;padding:0 6px;
+      max-width:393px;height:852px;margin:0 auto;overflow:hidden;flex-shrink:0;
       display:flex;flex-direction:column;
       box-shadow:0 0 0 1px var(--fo,rgba(255,255,255,.1)),0 0 0 3px var(--fb,#1a1a1a),0 30px 80px rgba(0,0,0,.4);
     }
