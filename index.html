@@ -183,6 +183,9 @@
       padding: 10px 16px; background: var(--bg); border-bottom: 1px solid var(--border);
     }
     .nav-logo { height: 34px; width: auto; flex-shrink: 0; }
+    .nav-logo.dark-logo { display: none; }
+    [data-theme="dark"] .nav-logo.light-logo { display: none; }
+    [data-theme="dark"] .nav-logo.dark-logo { display: inline; }
     .nav-actions { display: flex; align-items: center; gap: 6px; }
     .nav-btn {
       width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
@@ -216,6 +219,9 @@
     .menu-close:hover { background: var(--border); color: var(--text); }
     .menu-close svg { width: 22px; height: 22px; }
     .menu-panel .logo-menu { width: 130px; margin: 0 auto 24px; display: block; }
+    .logo-menu.dark-logo { display: none; }
+    [data-theme="dark"] .logo-menu.light-logo { display: none; }
+    [data-theme="dark"] .logo-menu.dark-logo { display: block; }
     .menu-link {
       display: flex; align-items: center; gap: 12px;
       padding: 14px 12px; border-radius: 12px;
@@ -254,7 +260,8 @@
 </head>
 <body>
   <nav class="nav">
-    <img class="nav-logo" src="logo.png" alt="Know Nation">
+    <img class="nav-logo light-logo" src="logo-light.png" alt="Know Nation">
+    <img class="nav-logo dark-logo" src="logo.png" alt="Know Nation">
     <div class="nav-actions">
       <button class="nav-btn" id="menu-btn" aria-label="Open menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
@@ -265,7 +272,8 @@
   <div class="menu-overlay" id="menu-overlay">
     <div class="menu-panel">
       <button class="menu-close" id="menu-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      <img class="logo-menu" src="logo.png" alt="Know Nation">
+      <img class="logo-menu light-logo" src="logo-light.png" alt="Know Nation">
+      <img class="logo-menu dark-logo" src="logo.png" alt="Know Nation">
       <a class="menu-link" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Projects</a>
       <a class="menu-link" href="workshop/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Workshop</a>
       <a class="menu-link" href="fitness/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Fitness</a>
