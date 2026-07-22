@@ -11,6 +11,13 @@
     :root { --brand: #0891B2; --bg: #fafafa; --text: #0c0a09; --muted: #6b7280; --border: #e5e7eb; --card: #fff; }
     [data-theme="dark"] { --brand: #38bdf8; --bg: #0f172a; --text: #f1f5f9; --muted: #94a3b8; --border: #1e293b; --card: #1e293b; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--brand); }
+    @supports (scrollbar-color: auto) {
+      * { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
+    }
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg); color: var(--text);
