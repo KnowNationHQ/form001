@@ -15,7 +15,7 @@
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg); color: var(--text);
       display: flex; flex-direction: column; align-items: center;
-      min-height: 100dvh; padding: 48px 20px;
+      min-height: 100dvh; padding: 48px 20px; overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
     .container { width: 100%; max-width: 520px; }
@@ -109,7 +109,7 @@
     .tags .t-tech { background: #e3f2fd; color: #1565c0; }
     .tags .t-gray { background: var(--bg); color: var(--muted); }
 
-    .actions { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+    .actions { display: flex; align-items: center; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
     .action-btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
       padding: 9px 16px; border: none; border-radius: 10px;
@@ -270,7 +270,7 @@
     .switch input:checked + .slider { background: var(--brand); }
     .switch input:checked + .slider::before { transform: translateX(20px); }
 
-    body { padding-top: 56px; }
+    body { padding-top: 72px; }
 
     #footer { margin-top: 48px; opacity: 0.1; user-select: none; pointer-events: none; text-align: center; }
     #footer span { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
