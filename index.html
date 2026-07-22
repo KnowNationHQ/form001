@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --brand: #d4a574; --bg: #f8f6f2; --text: #2c2824; --muted: #8c857e; --border: #e5e0d9; --card: #fff; }
-    [data-theme="dark"] { --brand: #d4a574; --bg: #1a1816; --text: #e8e2dc; --muted: #8c857e; --border: #2e2a26; --card: #242120; }
+    :root { --brand: #0891B2; --bg: #fafafa; --text: #0c0a09; --muted: #6b7280; --border: #e5e7eb; --card: #fff; }
+    [data-theme="dark"] { --brand: #38bdf8; --bg: #0f172a; --text: #f1f5f9; --muted: #94a3b8; --border: #1e293b; --card: #1e293b; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -20,7 +20,6 @@
     }
     .container { width: 100%; max-width: 520px; }
 
-    .brand { color: var(--brand); font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
     h1 { font-size: 28px; font-weight: 800; color: var(--text); margin-top: 6px; }
     .sub { color: var(--muted); font-size: 15px; margin-top: 6px; line-height: 1.5; }
 
@@ -46,7 +45,7 @@
     .tech-item .cat {
       font-size: 9px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; color: var(--brand);
-      background: rgba(212,165,116,0.1); padding: 2px 7px;
+      background: rgba(8,145,178,0.1); padding: 2px 7px;
       border-radius: 4px;
     }
     .tech-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
@@ -95,7 +94,7 @@
       padding: 3px 10px; border-radius: 99px;
       text-transform: uppercase; margin-bottom: 10px;
     }
-    .badge.form { background: rgba(212,165,116,0.12); color: var(--brand); }
+    .badge.form { background: rgba(8,145,178,0.1); color: var(--brand); }
     .badge.soon { background: var(--border); color: var(--muted); }
 
     .card h3 { font-size: 17px; font-weight: 700; color: var(--text); }
@@ -198,7 +197,7 @@
   </button>
 
   <div class="container">
-    <div class="brand">Know Nation</div>
+    <img src="logo.png" alt="Know Nation" style="display:block;width:140px;height:auto;margin:0 auto 8px">
     <h1>Projects</h1>
     <p class="sub">Digital products for your business</p>
 
@@ -331,7 +330,7 @@
     </div>
   </div>
 
-  <div id="footer"><span>Project by Know Nation Limited</span></div>
+  <div id="footer"><span>Know Nation Ltd &mdash; Powering Your Digital Future</span></div>
 
   <script>
     (function() {
