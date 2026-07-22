@@ -177,26 +177,20 @@
     }
     .modal .btn-close:hover { color: var(--text); }
 
-    .logo-wrap { text-align: center; margin-bottom: 6px; }
-    .logo-wrap img { width: 120px; height: auto; }
-
-    .theme-toggle {
-      position: fixed; top: 16px; right: 16px; z-index: 100;
-      background: var(--card); border: 1px solid var(--border); border-radius: 50%;
-      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--text); transition: all 0.2s;
+    .nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px; background: var(--bg); border-bottom: 1px solid var(--border);
     }
-    .theme-toggle:hover { border-color: var(--brand); color: var(--brand); }
-    .theme-toggle svg { width: 20px; height: 20px; }
-
-    .menu-btn {
-      position: fixed; top: 16px; right: 60px; z-index: 100;
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      width: 40px; height: 40px; display: none; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--text); transition: all 0.2s;
+    .nav-logo { height: 28px; width: auto; flex-shrink: 0; }
+    .nav-actions { display: flex; align-items: center; gap: 6px; }
+    .nav-btn {
+      width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); border-radius: 10px;
+      background: var(--card); color: var(--text); cursor: pointer; transition: 0.2s;
     }
-    .menu-btn:hover { border-color: var(--brand); color: var(--brand); }
-    .menu-btn svg { width: 20px; height: 20px; }
+    .nav-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .nav-btn svg { width: 20px; height: 20px; }
 
     .menu-overlay {
       position: fixed; inset: 0; z-index: 300;
@@ -231,30 +225,31 @@
     .menu-link:hover { background: var(--border); color: var(--brand); }
     .menu-link svg { width: 20px; height: 20px; color: var(--muted); flex-shrink: 0; }
     .menu-link:hover svg { color: var(--brand); }
+    .menu-theme {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 12px; border-radius: 12px; cursor: pointer;
+      font-size: 14px; font-weight: 600; color: var(--text); transition: 0.2s;
+      border: none; background: none; width: 100%; font-family: inherit;
+    }
+    .menu-theme:hover { background: var(--border); color: var(--brand); }
+    .menu-theme svg { width: 20px; height: 20px; color: var(--muted); flex-shrink: 0; }
+    .menu-theme:hover svg { color: var(--brand); }
 
-    @media (max-width: 767px) {
-      body { padding-top: 72px; }
-      .menu-btn { display: flex; }
-      .logo-wrap img { width: 100px; }
-    }
-    @media (min-width: 768px) {
-      .logo-wrap { position: fixed; top: 12px; left: 16px; z-index: 100; }
-      body { padding-top: 48px; }
-    }
+    body { padding-top: 56px; }
 
     #footer { margin-top: 48px; opacity: 0.1; user-select: none; pointer-events: none; text-align: center; }
     #footer span { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
   </style>
 </head>
 <body>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-    <svg id="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    <svg id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-  </button>
-
-  <button class="menu-btn" id="menu-btn" aria-label="Open menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-  </button>
+  <nav class="nav">
+    <img class="nav-logo" src="logo.png" alt="Know Nation">
+    <div class="nav-actions">
+      <button class="nav-btn" id="menu-btn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
 
   <div class="menu-overlay" id="menu-overlay">
     <div class="menu-panel">
@@ -263,13 +258,18 @@
       <a class="menu-link" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Projects</a>
       <a class="menu-link" href="workshop/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Workshop</a>
       <a class="menu-link" href="fitness/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Fitness</a>
+      <hr style="border:none;border-top:1px solid var(--border);margin:12px 0">
+      <button class="menu-theme" id="menu-theme">
+        <svg id="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span id="theme-label">Dark Mode</span>
+      </button>
       <div style="flex:1"></div>
       <div style="font-size:11px;color:var(--muted);text-align:center;padding:16px 0">&copy; Know Nation Ltd</div>
     </div>
   </div>
 
   <div class="container">
-    <div class="logo-wrap"><img src="logo.png" alt="Know Nation"></div>
     <h1>Projects</h1>
     <p class="sub">Digital products for your business</p>
 
@@ -409,15 +409,15 @@
       const html = document.documentElement;
       const saved = localStorage.getItem('kn_theme');
       if (saved === 'dark') html.setAttribute('data-theme', 'dark');
-      const btn = document.getElementById('theme-toggle');
       const sun = document.getElementById('sun-icon');
       const moon = document.getElementById('moon-icon');
-      btn.addEventListener('click', () => {
-        const isDark = html.getAttribute('data-theme') === 'dark';
-        if (isDark) { html.removeAttribute('data-theme'); localStorage.setItem('kn_theme', 'light'); sun.style.display = ''; moon.style.display = 'none'; }
-        else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('kn_theme', 'dark'); sun.style.display = 'none'; moon.style.display = ''; }
-      });
-      if (saved === 'dark') { sun.style.display = 'none'; moon.style.display = ''; }
+      const themeLabel = document.getElementById('theme-label');
+      const applyTheme = (isDark) => {
+        if (isDark) { html.setAttribute('data-theme', 'dark'); localStorage.setItem('kn_theme', 'dark'); sun.style.display = 'none'; moon.style.display = ''; themeLabel.textContent = 'Light Mode'; }
+        else { html.removeAttribute('data-theme'); localStorage.setItem('kn_theme', 'light'); sun.style.display = ''; moon.style.display = 'none'; themeLabel.textContent = 'Dark Mode'; }
+      };
+      document.getElementById('menu-theme').addEventListener('click', () => applyTheme(html.getAttribute('data-theme') !== 'dark'));
+      if (saved === 'dark') { sun.style.display = 'none'; moon.style.display = ''; themeLabel.textContent = 'Light Mode'; }
 
       const search = document.getElementById('search');
       const sections = document.querySelectorAll('.section');
