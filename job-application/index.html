@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Free Job Application Form Nigeria — WhatsApp-Integrated</title>
+  <meta name="description" content="Free job application form template for Nigerian employers. Collect applications directly to your WhatsApp. No backend required. HR-ready.">
+  <meta property="og:title" content="Free Job Application Form Nigeria">
+  <meta property="og:description" content="Collect job applications to WhatsApp. Free HTML form for Nigerian employers.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:#fafafa}
+    ::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:3px}
+    ::-webkit-scrollbar-thumb:hover{background:#0891B2}
+    :root{--brand:#0891B2;--brand-dark:#066F8A;--bg:#fafafa;--text:#0c0a09;--muted:#6b7280;--border:#e5e7eb;--card:#fff;--error:#e11d48;--success:#16a34a}
+    html{font-size:16px}
+    body{
+      font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
+      min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+      -webkit-font-smoothing:antialiased;overflow-x:hidden
+    }
+    .page-wrap{width:100%;max-width:720px;padding:24px 20px 48px}
+    @media(min-width:768px){.page-wrap{padding:40px 32px 64px}}
+
+    .top{display:flex;align-items:center;gap:12px;margin-bottom:32px}
+    .top img{height:32px;width:auto}
+    .top span{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.5px}
+
+    .step-bar{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px}
+    .step-node{display:flex;align-items:center;gap:8px}
+    .step-circle{
+      width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      font-size:14px;font-weight:700;border:2px solid var(--border);color:var(--muted);
+      background:var(--card);transition:all .3s;flex-shrink:0
+    }
+    .step-circle.active{border-color:var(--brand);background:var(--brand);color:#fff}
+    .step-circle.done{border-color:var(--brand);background:var(--brand);color:#fff}
+    .step-line{width:48px;height:2px;background:var(--border);transition:background .3s;flex-shrink:0}
+    .step-line.done{background:var(--brand)}
+    .step-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:none}
+    .step-circle.active+.step-label,.step-circle.done+.step-label{display:block}
+    @media(min-width:480px){.step-label{display:block}.step-node{gap:6px}}
+    @media(min-width:640px){.step-line{width:80px}}
+
+    .step{display:none}
+    .step.active{display:block;animation:fadeIn .35s cubic-bezier(.16,1,.3,1)}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+    .step-head{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.02em}
+    .step-sub{font-size:14px;color:var(--muted);margin-top:4px;margin-bottom:28px;line-height:1.5}
+
+    .fld{position:relative;margin-bottom:20px}
+    .fld label{
+      position:absolute;left:16px;top:16px;font-size:15px;font-weight:500;color:var(--muted);
+      pointer-events:none;transition:all .2s;background:var(--card);padding:0 4px;line-height:1
+    }
+    .fld input,.fld textarea,.fld select{
+      width:100%;padding:16px;border:1.5px solid var(--border);border-radius:12px;
+      background:var(--card);color:var(--text);font-size:15px;font-family:inherit;
+      outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none
+    }
+    .fld textarea{resize:vertical;min-height:100px}
+    .fld select{background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 14px center}
+    .fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(8,145,178,.1)}
+    .fld input:focus+label,.fld input:not(:placeholder-shown)+label,.fld textarea:focus+label,.fld textarea:not(:placeholder-shown)+label,.fld select:focus+label,.fld select:not([value=""]):valid+label{top:-8px;font-size:12px;color:var(--brand);font-weight:600}
+    .fld input:focus+label,.fld textarea:focus+label,.fld select:focus+label{color:var(--brand)}
+    .fld input.error,.fld textarea.error,.fld select.error{border-color:var(--error)}
+    .fld input.error+label,.fld textarea.error+label,.fld select.error+label{color:var(--error)}
+    .fld .err{font-size:12px;color:var(--error);margin-top:4px;display:none}
+    .fld .err.show{display:block}
+    .fld .hint{font-size:12px;color:var(--muted);margin-top:4px}
+
+    @media(min-width:640px){.row{display:flex;gap:16px}.row .fld{flex:1}}
+
+    .seg{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+    .seg-btn{
+      flex:1;min-width:80px;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;
+      background:var(--card);color:var(--text);font-size:14px;font-weight:600;font-family:inherit;
+      cursor:pointer;transition:all .2s;text-align:center;min-height:44px
+    }
+    .seg-btn:hover{border-color:var(--brand)}
+    .seg-btn.selected{border-color:var(--brand);background:rgba(8,145,178,.08);color:var(--brand)}
+
+    .upload-zone{
+      border:2px dashed var(--border);border-radius:12px;padding:32px 20px;
+      text-align:center;cursor:pointer;transition:all .2s;margin-top:4px
+    }
+    .upload-zone:hover{border-color:var(--brand);background:rgba(8,145,178,.03)}
+    .upload-zone.has-file{border-style:solid;border-color:var(--success);background:rgba(22,163,74,.04)}
+    .upload-zone svg{width:32px;height:32px;color:var(--muted);margin-bottom:8px}
+    .upload-zone p{font-size:14px;color:var(--muted)}
+    .upload-zone p strong{color:var(--text)}
+    .upload-zone .file-name{font-size:13px;font-weight:600;color:var(--success);margin-top:4px;display:none}
+    .upload-zone.has-file .file-name{display:block}
+    .upload-zone input{display:none}
+
+    .review-card{
+      background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px
+    }
+    .review-card h4{
+      font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;
+      letter-spacing:.5px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between
+    }
+    .review-card h4 button{
+      background:none;border:none;font-size:12px;font-weight:600;color:var(--brand);
+      cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .2s
+    }
+    .review-card h4 button:hover{background:rgba(8,145,178,.08)}
+    .review-row{display:flex;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+    .review-row:last-child{border:none}
+    .review-row .rl{width:100px;flex-shrink:0;color:var(--muted);font-weight:500}
+    .review-row .rv{color:var(--text)}
+
+    .btn-primary{
+      width:100%;padding:16px;border:none;border-radius:12px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:#fff;
+      font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;
+      transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px
+    }
+    .btn-primary:hover{transform:scale(1.01);filter:brightness(1.05)}
+    .btn-primary:active{transform:scale(.98)}
+    .btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    .btn-primary .spinner{width:20px;height:20px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;display:none}
+    .btn-primary.loading .spinner{display:block}
+    .btn-primary.loading .label{display:none}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .btn-back{
+      background:none;border:none;color:var(--muted);font-size:14px;font-weight:600;
+      cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px;font-family:inherit;transition:color .2s
+    }
+    .btn-back:hover{color:var(--text)}
+
+    .success-wrap{text-align:center;padding:20px 0}
+    .success-icon{
+      width:64px;height:64px;border-radius:50%;background:rgba(22,163,74,.1);
+      display:flex;align-items:center;justify-content:center;margin:0 auto 20px;animation:popIn .5s cubic-bezier(.34,1.56,.64,1)
+    }
+    .success-icon svg{width:32px;height:32px;color:var(--success);stroke-dasharray:30;stroke-dashoffset:30;animation:drawCheck .5s ease-out forwards}
+    @keyframes popIn{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+    @keyframes drawCheck{to{stroke-dashoffset:0}}
+    .success-wrap h2{font-size:24px;font-weight:800;color:var(--text);margin-bottom:6px}
+    .success-wrap p{font-size:15px;color:var(--muted);line-height:1.5}
+    .success-wrap .ref{font-size:13px;font-weight:700;color:var(--brand);margin-top:12px;padding:8px 16px;background:rgba(8,145,178,.08);border-radius:8px;display:inline-block}
+
+    .actions{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+    .actions .btn-primary{flex:1}
+    .btn-outline{
+      flex:1;padding:16px;border:1.5px solid var(--border);border-radius:12px;
+      background:var(--card);color:var(--text);font-size:15px;font-weight:700;font-family:inherit;
+      cursor:pointer;transition:all .2s;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center
+    }
+    .btn-outline:hover{border-color:var(--brand);color:var(--brand)}
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="top">
+    <img src="../logo.png" alt="Know Nation">
+    <span>Job Application Form</span>
+  </div>
+
+  <div class="step-bar" id="step-bar">
+    <div class="step-node"><div class="step-circle active">1</div><span class="step-label">Personal</span></div>
+    <div class="step-line"></div>
+    <div class="step-node"><div class="step-circle">2</div><span class="step-label">Experience</span></div>
+    <div class="step-line"></div>
+    <div class="step-node"><div class="step-circle">3</div><span class="step-label">Review</span></div>
+    <div class="step-line"></div>
+    <div class="step-node"><div class="step-circle">4</div><span class="step-label">Done</span></div>
+  </div>
+
+  <form id="app-form" novalidate>
+    <div class="step active" data-step="1">
+      <h1 class="step-head">Personal Information</h1>
+      <p class="step-sub">Let the employer know who you are.</p>
+      <div class="row">
+        <div class="fld">
+          <input type="text" id="name" placeholder=" " required>
+          <label for="name">Full Name *</label>
+          <div class="err" id="name-err">Please enter your full name</div>
+        </div>
+        <div class="fld">
+          <input type="email" id="email" placeholder=" " required>
+          <label for="email">Email Address *</label>
+          <div class="err" id="email-err">Enter a valid email address</div>
+        </div>
+      </div>
+      <div class="fld">
+        <input type="tel" id="phone" placeholder=" " required>
+        <label for="phone">Phone Number *</label>
+        <div class="hint">e.g. +234 801 234 5678</div>
+        <div class="err" id="phone-err">Please enter your phone number</div>
+      </div>
+      <div class="fld">
+        <input type="text" id="location" placeholder=" " required>
+        <label for="location">Location *</label>
+        <div class="hint">City or town you're based in</div>
+        <div class="err" id="location-err">Please enter your location</div>
+      </div>
+      <div style="margin-top:4px"><button class="btn-primary" type="button" id="to-step-2">Continue →</button></div>
+    </div>
+
+    <div class="step" data-step="2">
+      <h1 class="step-head">Experience &amp; Role</h1>
+      <p class="step-sub">Tell us about your skills and the position you're applying for.</p>
+      <div class="fld">
+        <input type="text" id="position" placeholder=" " required>
+        <label for="position">Position Applying For *</label>
+        <div class="err" id="position-err">Enter the position you're applying for</div>
+      </div>
+      <div class="fld">
+        <label style="position:static;padding:0;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--muted);background:none">Years of Experience *</label>
+        <div class="seg" id="exp-seg">
+          <button class="seg-btn" data-value="0-2">0–2 yrs</button>
+          <button class="seg-btn" data-value="3-5">3–5 yrs</button>
+          <button class="seg-btn" data-value="5+">5+ yrs</button>
+        </div>
+        <input type="hidden" id="experience" required>
+        <div class="err" id="experience-err">Select your experience level</div>
+      </div>
+      <div class="fld">
+        <select id="education" required>
+          <option value="" disabled selected></option>
+          <option value="SSCE">SSCE / WAEC</option>
+          <option value="OND">OND</option>
+          <option value="HND">HND</option>
+          <option value="B.Sc">B.Sc / B.Eng / B.A</option>
+          <option value="M.Sc">M.Sc / M.A</option>
+          <option value="PhD">PhD</option>
+          <option value="Other">Other</option>
+        </select>
+        <label for="education">Highest Education *</label>
+        <div class="err" id="education-err">Select your highest education</div>
+      </div>
+      <div class="fld">
+        <textarea id="cover" placeholder=" "></textarea>
+        <label for="cover">Cover Note (optional)</label>
+        <div class="hint" id="char-count">0 / 500 characters</div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:4px">
+        <button class="btn-back" type="button" id="back-to-1">← Back</button>
+        <button class="btn-primary" type="button" id="to-step-3" style="flex:1">Review →</button>
+      </div>
+    </div>
+
+    <div class="step" data-step="3">
+      <h1 class="step-head">Review &amp; Submit</h1>
+      <p class="step-sub">Double-check your details before sending.</p>
+
+      <div class="review-card">
+        <h4><span>Step 1 — Personal</span> <button type="button" id="edit-1">Edit</button></h4>
+        <div class="review-row"><span class="rl">Name</span><span class="rv" id="rv-name"></span></div>
+        <div class="review-row"><span class="rl">Email</span><span class="rv" id="rv-email"></span></div>
+        <div class="review-row"><span class="rl">Phone</span><span class="rv" id="rv-phone"></span></div>
+        <div class="review-row"><span class="rl">Location</span><span class="rv" id="rv-location"></span></div>
+      </div>
+
+      <div class="review-card">
+        <h4><span>Step 2 — Experience</span> <button type="button" id="edit-2">Edit</button></h4>
+        <div class="review-row"><span class="rl">Position</span><span class="rv" id="rv-position"></span></div>
+        <div class="review-row"><span class="rl">Experience</span><span class="rv" id="rv-experience"></span></div>
+        <div class="review-row"><span class="rl">Education</span><span class="rv" id="rv-education"></span></div>
+        <div class="review-row"><span class="rl">Cover Note</span><span class="rv" id="rv-cover"></span></div>
+      </div>
+
+      <div class="fld">
+        <div class="upload-zone" id="upload-zone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <p><strong>Click to upload CV</strong> or drag and drop<br>PDF, DOC, DOCX accepted</p>
+          <div class="file-name"></div>
+          <input type="file" id="cv" accept=".pdf,.doc,.docx">
+        </div>
+      </div>
+
+      <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:20px">
+        <input type="checkbox" id="declaration" style="margin-top:3px;width:18px;height:18px;accent-color:var(--brand);flex-shrink:0">
+        <span style="font-size:14px;color:var(--text);line-height:1.4">I confirm that all information provided is accurate and complete to the best of my knowledge.</span>
+      </label>
+
+      <div style="display:flex;gap:12px">
+        <button class="btn-back" type="button" id="back-to-2">← Back</button>
+        <button class="btn-primary" type="button" id="submit-btn"><span class="label">Submit Application</span><span class="spinner"></span></button>
+      </div>
+    </div>
+
+    <div class="step" data-step="4">
+      <div class="success-wrap">
+        <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h2>Application Submitted!</h2>
+        <p>Your application has been sent to the employer via WhatsApp. They'll review and reach out to you.</p>
+        <div class="ref" id="ref-id">KN-JOB-000000</div>
+      </div>
+      <div class="actions">
+        <a class="btn-outline" href="../">← Back to Projects</a>
+        <button class="btn-primary" type="button" id="new-app">Submit Another →</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+(function() {
+  const $ = id => document.getElementById(id);
+  const steps = document.querySelectorAll('.step');
+  const circles = document.querySelectorAll('.step-circle');
+  const lines = document.querySelectorAll('.step-line');
+  const form = $('app-form');
+
+  let curStep = 1;
+  let appData = {};
+
+  function updateProjection(step, data) {
+    Object.assign(appData, data);
+    const map = {
+      1: ['name','email','phone','location'],
+      2: ['position','experience','education','cover']
+    };
+    (map[step]||[]).forEach(k => {
+      const el = $('rv-'+k);
+      if (el) el.textContent = appData[k] || '—';
+    });
+  }
+
+  function showStep(n) {
+    steps.forEach(s => s.classList.remove('active'));
+    steps.forEach(s => { if (+s.dataset.step === n) s.classList.add('active'); });
+    circles.forEach((c, i) => {
+      c.classList.toggle('active', i+1 === n);
+      c.classList.toggle('done', i+1 < n);
+    });
+    lines.forEach((l, i) => l.classList.toggle('done', i+1 < n));
+    curStep = n;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function validateStep(n) {
+    if (n === 1) {
+      let ok = true;
+      ['name','email','phone','location'].forEach(id => {
+        const el = $(id);
+        const err = $(id+'-err');
+        const v = el.value.trim();
+        if (!v || (id === 'email' && !/\S+@\S+\.\S+/.test(v))) {
+          el.classList.add('error'); err.classList.add('show'); ok = false;
+        } else {
+          el.classList.remove('error'); err.classList.remove('show');
+        }
+      });
+      return ok;
+    }
+    if (n === 2) {
+      let ok = true;
+      const pos = $('position'); const pe = $('position-err');
+      if (!pos.value.trim()) { pos.classList.add('error'); pe.classList.add('show'); ok = false; }
+      else { pos.classList.remove('error'); pe.classList.remove('show'); }
+
+      const exp = $('experience');
+      const ee = $('experience-err');
+      if (!exp.value) { ee.classList.add('show'); ok = false; }
+      else { ee.classList.remove('show'); }
+
+      const edu = $('education'); const edue = $('education-err');
+      if (!edu.value) { edu.classList.add('error'); edue.classList.add('show'); ok = false; }
+      else { edu.classList.remove('error'); edue.classList.remove('show'); }
+
+      return ok;
+    }
+    return true;
+  }
+
+  function collectStep(n) {
+    if (n === 1) {
+      return {
+        name: $('name').value.trim(),
+        email: $('email').value.trim(),
+        phone: $('phone').value.trim(),
+        location: $('location').value.trim()
+      };
+    }
+    if (n === 2) {
+      return {
+        position: $('position').value.trim(),
+        experience: $('experience').value,
+        education: $('education').value,
+        cover: $('cover').value.trim()
+      };
+    }
+    return {};
+  }
+
+  // Experience segmented control
+  const segBtns = document.querySelectorAll('.seg-btn');
+  segBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      segBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      $('experience').value = btn.dataset.value;
+    });
+  });
+
+  // Upload zone
+  const zone = $('upload-zone');
+  const cvInput = $('cv');
+  const fileName = zone.querySelector('.file-name');
+  zone.addEventListener('click', () => cvInput.click());
+  cvInput.addEventListener('change', () => {
+    if (cvInput.files.length) {
+      zone.classList.add('has-file');
+      fileName.textContent = '📄 ' + cvInput.files[0].name;
+    }
+  });
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--brand)'; });
+  zone.addEventListener('dragleave', () => { zone.style.borderColor = ''; });
+  zone.addEventListener('drop', e => {
+    e.preventDefault(); zone.style.borderColor = '';
+    if (e.dataTransfer.files.length) {
+      cvInput.files = e.dataTransfer.files;
+      zone.classList.add('has-file');
+      fileName.textContent = '📄 ' + e.dataTransfer.files[0].name;
+    }
+  });
+
+  // Cover note char count
+  $('cover').addEventListener('input', function() {
+    $('char-count').textContent = this.value.length + ' / 500 characters';
+    if (this.value.length > 500) this.value = this.value.slice(0, 500);
+  });
+
+  // Step navigation
+  $('to-step-2').addEventListener('click', () => {
+    if (validateStep(1)) {
+      const d = collectStep(1);
+      updateProjection(1, d);
+      showStep(2);
+    }
+  });
+  $('back-to-1').addEventListener('click', () => { showStep(1); });
+  $('to-step-3').addEventListener('click', () => {
+    if (validateStep(2)) {
+      const d = collectStep(2);
+      updateProjection(2, d);
+      showStep(3);
+    }
+  });
+  $('back-to-2').addEventListener('click', () => { showStep(2); });
+  $('edit-1').addEventListener('click', () => { showStep(1); });
+  $('edit-2').addEventListener('click', () => { showStep(2); });
+
+  // Submit
+  $('submit-btn').addEventListener('click', function() {
+    if (!$('declaration').checked) { alert('Please confirm that your information is accurate.'); return; }
+    const data = appData;
+    const lines = [
+      '🔔 *NEW JOB APPLICATION*',
+      '━━━━━━━━━━━━━━━━━━━━━',
+      '👤 Name: ' + data.name,
+      '📧 Email: ' + data.email,
+      '📞 Phone: ' + data.phone,
+      '📍 Location: ' + data.location,
+      '',
+      '🎯 Position: ' + data.position,
+      '⏳ Experience: ' + data.experience + ' years',
+      '🎓 Education: ' + data.education,
+      '📝 Note: ' + (data.cover || 'N/A'),
+      '━━━━━━━━━━━━━━━━━━━━━',
+      '🆔 Ref: KN-JOB-' + Date.now().toString(36).toUpperCase()
+    ];
+    const msg = lines.join('\n');
+
+    this.classList.add('loading');
+    this.disabled = true;
+
+    setTimeout(() => {
+      this.classList.remove('loading');
+      this.disabled = false;
+      const ref = 'KN-JOB-' + Date.now().toString(36).toUpperCase();
+      $('ref-id').textContent = ref;
+      showStep(4);
+
+      // Confetti
+      (function confetti(count) {
+        if (count > 40) return;
+        const c = document.createElement('div');
+        c.style.cssText = 'position:fixed;width:8px;height:8px;border-radius:2px;z-index:999;pointer-events:none;' +
+          'left:' + (Math.random() * 100) + 'vw;top:-10px;' +
+          'background:' + ['#0891B2','#06B6D4','#22d3ee','#67e8f9'][Math.floor(Math.random()*4)] + ';' +
+          'animation:confettiFall ' + (0.8 + Math.random()) + 's linear forwards';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 2000);
+        setTimeout(() => confetti(count + 1), 60 + Math.random() * 100);
+      })(0);
+
+      // WhatsApp
+      const phone = '2349031206299';
+      window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(msg), '_blank');
+    }, 1200);
+  });
+
+  // New application
+  $('new-app').addEventListener('click', () => {
+    form.reset();
+    appData = {};
+    segBtns.forEach(b => b.classList.remove('selected'));
+    zone.classList.remove('has-file');
+    fileName.textContent = '';
+    $('experience').value = '';
+    showStep(1);
+  });
+
+  // Floating label support for select
+  document.querySelectorAll('select').forEach(s => {
+    if (s.value) s.setAttribute('data-has-value', '1');
+    s.addEventListener('change', function() {
+      if (this.value) this.setAttribute('data-has-value', '1');
+      else this.removeAttribute('data-has-value');
+    });
+  });
+})();
+</script>
+</body>
+</html>
