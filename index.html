@@ -123,6 +123,8 @@
     .action-btn.outline:hover { border-color: var(--brand); color: var(--brand); }
     .action-btn.ghost { background: transparent; color: var(--muted); padding: 8px; border-radius: 8px; }
     .action-btn.ghost:hover { color: var(--text); background: var(--bg); }
+    .action-btn.ghost[title="X / Twitter"]:hover { color: #1DA1F2; background: rgba(29,161,242,0.08); }
+    .action-btn.ghost[title="TikTok"]:hover { color: #FE2C55; background: rgba(254,44,85,0.08); }
     .action-btn.free { background: #e8f5e9; color: #2e7d32; }
     .action-btn.free:hover { filter: brightness(0.95); }
     .action-btn.disabled { opacity: 0.4; cursor: default; pointer-events: none; }
@@ -168,16 +170,15 @@
     }
     .modal .social-row a svg { width: 17px; height: 17px; flex-shrink: 0; }
     .modal .social-row .gh { background: #24292e; color: #fff; }
-    .modal .social-row .gh:hover { background: #1b1f23; }
-    .modal .social-row .gh svg { fill: currentColor; }
+    .modal .social-row .gh:hover { background: #1DA1F2; }
     .modal .social-row .x { background: #000; color: #fff; }
-    .modal .social-row .x:hover { background: #1a1a1a; }
+    .modal .social-row .x:hover { background: #1DA1F2; }
     [data-theme="dark"] .modal .social-row .x { background: #333; }
     [data-theme="dark"] .modal .social-row .x:hover { background: #444; }
     .modal .social-row .tt { background: #000; color: #fff; }
-    .modal .social-row .tt:hover { background: #1a1a1a; }
+    .modal .social-row .tt:hover { background: #FE2C55; }
     [data-theme="dark"] .modal .social-row .tt { background: #333; }
-    [data-theme="dark"] .modal .social-row .tt:hover { background: #444; }
+    [data-theme="dark"] .modal .social-row .tt:hover { background: #FE2C55; }
     .modal .divider { height: 1px; background: var(--border); margin: 18px 0; }
     .modal .btn-download {
       display: block; width: 100%;
