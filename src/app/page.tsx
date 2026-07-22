@@ -123,7 +123,10 @@ export default function HomePage() {
   return (
     <>
       <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 py-2.5 bg-background border-b">
-        <img src="/logo-light.png" alt="Know Nation" className="h-10 w-auto" />
+        <a href="/">
+          <img src="/knownation004.png" alt="Know Nation" className="h-10 w-auto dark:hidden" />
+          <img src="/logo-light.png" alt="Know Nation" className="h-10 w-auto hidden dark:block" />
+        </a>
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Button variant="outline" size="icon" onClick={() => setMenuOpen(true)} aria-label="Open menu">
@@ -135,10 +138,16 @@ export default function HomePage() {
       {menuOpen && (
         <div className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm flex justify-end" onClick={() => setMenuOpen(false)}>
           <div className="w-[280px] max-w-[75vw] h-full bg-background border-l p-6 flex flex-col animate-slide-in" onClick={(e) => e.stopPropagation()}>
-            <button className="self-end mb-6 p-2 rounded-lg hover:bg-muted transition-colors" onClick={() => setMenuOpen(false)}>
-              <X className="h-5 w-5" />
-            </button>
-            <img src="/logo-light.png" alt="Know Nation" className="w-40 mx-auto mb-6" />
+            <div className="flex items-center justify-between mb-6">
+              <button className="p-2 rounded-lg hover:bg-muted transition-colors" onClick={() => setMenuOpen(false)}>
+                <X className="h-5 w-5" />
+              </button>
+              <ThemeToggle />
+            </div>
+            <a href="/" onClick={() => setMenuOpen(false)}>
+              <img src="/knownation004.png" alt="Know Nation" className="w-40 mx-auto mb-6 dark:hidden" />
+              <img src="/logo-light.png" alt="Know Nation" className="w-40 mx-auto mb-6 hidden dark:block" />
+            </a>
             <div className="space-y-1">
               <a href="/" className="flex items-center gap-3 px-3 py-3.5 rounded-xl text-sm font-semibold hover:bg-muted transition-colors">
                 <Home className="h-5 w-5 text-muted-foreground" />
