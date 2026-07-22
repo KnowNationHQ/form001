@@ -182,7 +182,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 10px 16px; background: var(--bg); border-bottom: 1px solid var(--border);
     }
-    .nav-logo { height: 28px; width: auto; flex-shrink: 0; }
+    .nav-logo { height: 34px; width: auto; flex-shrink: 0; }
     .nav-actions { display: flex; align-items: center; gap: 6px; }
     .nav-btn {
       width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
@@ -215,7 +215,7 @@
     }
     .menu-close:hover { background: var(--border); color: var(--text); }
     .menu-close svg { width: 22px; height: 22px; }
-    .menu-panel .logo-menu { width: 100px; margin: 8px 0 24px; }
+    .menu-panel .logo-menu { width: 130px; margin: 0 auto 24px; display: block; }
     .menu-link {
       display: flex; align-items: center; gap: 12px;
       padding: 14px 12px; border-radius: 12px;
@@ -226,14 +226,25 @@
     .menu-link svg { width: 20px; height: 20px; color: var(--muted); flex-shrink: 0; }
     .menu-link:hover svg { color: var(--brand); }
     .menu-theme {
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 14px 12px; border-radius: 12px; cursor: pointer;
       font-size: 14px; font-weight: 600; color: var(--text); transition: 0.2s;
       border: none; background: none; width: 100%; font-family: inherit;
     }
-    .menu-theme:hover { background: var(--border); color: var(--brand); }
-    .menu-theme svg { width: 20px; height: 20px; color: var(--muted); flex-shrink: 0; }
-    .menu-theme:hover svg { color: var(--brand); }
+    .menu-theme:hover { background: var(--border); }
+    .switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .switch .slider {
+      position: absolute; cursor: pointer; inset: 0;
+      background: var(--border); border-radius: 24px; transition: 0.3s;
+    }
+    .switch .slider::before {
+      content: ''; position: absolute; left: 3px; top: 3px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #fff; transition: 0.3s;
+    }
+    .switch input:checked + .slider { background: var(--brand); }
+    .switch input:checked + .slider::before { transform: translateX(20px); }
 
     body { padding-top: 56px; }
 
@@ -259,11 +270,10 @@
       <a class="menu-link" href="workshop/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Workshop</a>
       <a class="menu-link" href="fitness/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Fitness</a>
       <hr style="border:none;border-top:1px solid var(--border);margin:12px 0">
-      <button class="menu-theme" id="menu-theme">
-        <svg id="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <span id="theme-label">Dark Mode</span>
-      </button>
+      <div class="menu-theme">
+        <span>Dark Mode</span>
+        <label class="switch"><input type="checkbox" id="theme-switch"><span class="slider"></span></label>
+      </div>
       <div style="flex:1"></div>
       <div style="font-size:11px;color:var(--muted);text-align:center;padding:16px 0">&copy; Know Nation Ltd</div>
     </div>
@@ -408,16 +418,14 @@
     (function() {
       const html = document.documentElement;
       const saved = localStorage.getItem('kn_theme');
-      if (saved === 'dark') html.setAttribute('data-theme', 'dark');
-      const sun = document.getElementById('sun-icon');
-      const moon = document.getElementById('moon-icon');
-      const themeLabel = document.getElementById('theme-label');
-      const applyTheme = (isDark) => {
-        if (isDark) { html.setAttribute('data-theme', 'dark'); localStorage.setItem('kn_theme', 'dark'); sun.style.display = 'none'; moon.style.display = ''; themeLabel.textContent = 'Light Mode'; }
-        else { html.removeAttribute('data-theme'); localStorage.setItem('kn_theme', 'light'); sun.style.display = ''; moon.style.display = 'none'; themeLabel.textContent = 'Dark Mode'; }
-      };
-      document.getElementById('menu-theme').addEventListener('click', () => applyTheme(html.getAttribute('data-theme') !== 'dark'));
-      if (saved === 'dark') { sun.style.display = 'none'; moon.style.display = ''; themeLabel.textContent = 'Light Mode'; }
+      const isDark = saved === 'dark';
+      if (isDark) html.setAttribute('data-theme', 'dark');
+      const sw = document.getElementById('theme-switch');
+      sw.checked = isDark;
+      sw.addEventListener('change', () => {
+        if (sw.checked) { html.setAttribute('data-theme', 'dark'); localStorage.setItem('kn_theme', 'dark'); }
+        else { html.removeAttribute('data-theme'); localStorage.setItem('kn_theme', 'light'); }
+      });
 
       const search = document.getElementById('search');
       const sections = document.querySelectorAll('.section');
