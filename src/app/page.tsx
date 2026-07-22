@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ProjectCard } from '@/components/project-card';
 import { PhoneFrame } from '@/components/phone-frame';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { Moon, Sun } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 const projects = [
@@ -140,7 +140,9 @@ export default function HomePage() {
           <img src={isDark ? "/logo-light.png" : "/knownation004.png"} alt="Know Nation" className="h-10 w-auto" />
         </a>
         <div className="flex items-center gap-2">
-          <ThemeToggle />
+          <Button variant="outline" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </Button>
           <Button variant="outline" size="icon" onClick={() => setMenuOpen(true)} aria-label="Open menu">
             <Menu className="h-5 w-5" />
           </Button>
