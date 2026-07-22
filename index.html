@@ -177,10 +177,9 @@
     }
     .modal .btn-close:hover { color: var(--text); }
 
-    .logo-fixed {
-      position: fixed; top: 12px; left: 16px; z-index: 100;
-      width: 110px; height: auto;
-    }
+    .logo-wrap { text-align: center; margin-bottom: 6px; }
+    .logo-wrap img { width: 120px; height: auto; }
+
     .theme-toggle {
       position: fixed; top: 16px; right: 16px; z-index: 100;
       background: var(--card); border: 1px solid var(--border); border-radius: 50%;
@@ -189,6 +188,59 @@
     }
     .theme-toggle:hover { border-color: var(--brand); color: var(--brand); }
     .theme-toggle svg { width: 20px; height: 20px; }
+
+    .menu-btn {
+      position: fixed; top: 16px; right: 60px; z-index: 100;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      width: 40px; height: 40px; display: none; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--text); transition: all 0.2s;
+    }
+    .menu-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .menu-btn svg { width: 20px; height: 20px; }
+
+    .menu-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      display: none; align-items: center; justify-content: flex-end;
+    }
+    .menu-overlay.open { display: flex; }
+    .menu-panel {
+      width: 280px; max-width: 75vw; height: 100%;
+      background: var(--bg); border-left: 1px solid var(--border);
+      padding: 24px; display: flex; flex-direction: column;
+      animation: menuSlide 0.3s ease-out;
+    }
+    @keyframes menuSlide {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    .menu-close {
+      align-self: flex-end; background: none; border: none;
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--muted); border-radius: 10px; transition: 0.2s;
+    }
+    .menu-close:hover { background: var(--border); color: var(--text); }
+    .menu-close svg { width: 22px; height: 22px; }
+    .menu-panel .logo-menu { width: 100px; margin: 8px 0 24px; }
+    .menu-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 12px; border-radius: 12px;
+      font-size: 14px; font-weight: 600; color: var(--text);
+      text-decoration: none; transition: 0.2s;
+    }
+    .menu-link:hover { background: var(--border); color: var(--brand); }
+    .menu-link svg { width: 20px; height: 20px; color: var(--muted); flex-shrink: 0; }
+    .menu-link:hover svg { color: var(--brand); }
+
+    @media (max-width: 767px) {
+      body { padding-top: 72px; }
+      .menu-btn { display: flex; }
+      .logo-wrap img { width: 100px; }
+    }
+    @media (min-width: 768px) {
+      .logo-wrap { position: fixed; top: 12px; left: 16px; z-index: 100; }
+      body { padding-top: 48px; }
+    }
 
     #footer { margin-top: 48px; opacity: 0.1; user-select: none; pointer-events: none; text-align: center; }
     #footer span { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
@@ -200,8 +252,24 @@
     <svg id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
   </button>
 
-  <img class="logo-fixed" src="logo.png" alt="Know Nation">
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+  </button>
+
+  <div class="menu-overlay" id="menu-overlay">
+    <div class="menu-panel">
+      <button class="menu-close" id="menu-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <img class="logo-menu" src="logo.png" alt="Know Nation">
+      <a class="menu-link" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Projects</a>
+      <a class="menu-link" href="workshop/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Workshop</a>
+      <a class="menu-link" href="fitness/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Fitness</a>
+      <div style="flex:1"></div>
+      <div style="font-size:11px;color:var(--muted);text-align:center;padding:16px 0">&copy; Know Nation Ltd</div>
+    </div>
+  </div>
+
   <div class="container">
+    <div class="logo-wrap"><img src="logo.png" alt="Know Nation"></div>
     <h1>Projects</h1>
     <p class="sub">Digital products for your business</p>
 
@@ -383,6 +451,15 @@
       modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
       });
+
+      const menuBtn = document.getElementById('menu-btn');
+      const menuOverlay = document.getElementById('menu-overlay');
+      const menuClose = document.getElementById('menu-close');
+      const openMenu = () => menuOverlay.classList.add('open');
+      const closeMenu = () => menuOverlay.classList.remove('open');
+      menuBtn.addEventListener('click', openMenu);
+      menuClose.addEventListener('click', closeMenu);
+      menuOverlay.addEventListener('click', (e) => { if (e.target === menuOverlay) closeMenu(); });
     })();
   </script>
 </body>
