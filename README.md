@@ -1,60 +1,36 @@
-# Know Nation — Form Projects
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Collection of ready-to-use HTML registration forms with WhatsApp DM delivery. No backend, no database, no build step.
+## Getting Started
 
-| Project | Description | Price |
-|---------|-------------|-------|
-| [Workshop Registration](#workshop-registration) | 3-step event registration + WhatsApp | Free |
-| [Fitness Form](#fitness-form) | Client enquiry & registration form | Free |
+First, run the development server:
 
----
-
-## Workshop Registration
-
-3-step registration form for workshops, classes, and events. Collect attendee info and send it straight to your WhatsApp for manual payment confirmation.
-
-**Demo:** [knownation-projects.vercel.app/workshop](https://knownation-projects.vercel.app/workshop/)
-
-### Customize
-
-Open `workshop/index.html`, find the `CONFIG` block at the top:
-
-```js
-const CONFIG = {
-  eventName: 'Your Event',
-  brand: '#d4a574',
-  whatsapp: '2348012345678',  // your number (country code, no +)
-  tickets: [
-    { tier: 'General Admission', price: 5000, desc: 'Full access. Standard seating.' },
-    { tier: 'VIP', price: 15000, desc: 'Priority seating + meet & greet.' },
-  ],
-};
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-That's it — event name, colors, ticket tiers, and your WhatsApp number in one place.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Flow
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-1. **Select pass** — choose tier and quantity
-2. **Your details** — enter name, email, phone
-3. **Pay on WhatsApp** — sends a pre-filled message to you with the registration details
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### Deploy
+## Learn More
 
-Upload the `workshop/` folder to any static host (Netlify, Vercel, GitHub Pages, or even a shared hosting folder). No server-side code needed.
+To learn more about Next.js, take a look at the following resources:
 
----
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Fitness Form
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Responsive enquiry and registration form for fitness coaches, gyms, and wellness programs.
+## Deploy on Vercel
 
-**Demo:** [knownation-projects.vercel.app/fitness](https://knownation-projects.vercel.app/fitness/)
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Open `fitness/index.html`, edit the config block at the top, and go live. Same zero-dependency approach.
-
----
-
-## License
-
-Both projects are free and open-source.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -17,8 +17,8 @@
     ::-webkit-scrollbar{width:6px}
     ::-webkit-scrollbar-track{background:#fafafa}
     ::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:3px}
-    ::-webkit-scrollbar-thumb:hover{background:#0891B2}
-    :root{--brand:#0891B2;--brand-dark:#066F8A;--bg:#fafafa;--text:#0c0a09;--muted:#6b7280;--border:#e5e7eb;--card:#fff;--error:#e11d48;--success:#16a34a}
+    ::-webkit-scrollbar-thumb:hover{background:#4338ca}
+    :root{--brand:#4338ca;--brand-dark:#3730a3;--bg:#fafafa;--text:#0c0a09;--muted:#6b7280;--border:#e5e7eb;--card:#fff;--error:#e11d48;--success:#16a34a}
 
     body{
       font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
@@ -117,10 +117,6 @@
     .page-nav .nav-current { color: var(--text); font-weight: 600; }
     .page-nav .disabled { opacity: 0.2; }
 
-    .top{display:flex;align-items:center;gap:12px;padding-top:12px;margin-bottom:24px}
-    .top img{height:32px;width:auto}
-    .top span{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.5px}
-
     .step-bar{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:32px}
     .step-node{display:flex;align-items:center;gap:8px}
     .step-circle{
@@ -156,7 +152,7 @@
     }
     .fld textarea{resize:vertical;min-height:90px}
     .fld select{background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 14px center}
-    .fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(8,145,178,.1)}
+    .fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(67,56,202,.1)}
     .fld input:focus+label,.fld input:not(:placeholder-shown)+label,.fld textarea:focus+label,.fld textarea:not(:placeholder-shown)+label,.fld select:focus+label,.fld select:not([value=""]):valid+label{top:-8px;font-size:11px;color:var(--brand);font-weight:600}
     .fld input.error,.fld textarea.error,.fld select.error{border-color:var(--error)}
     .fld input.error+label,.fld textarea.error+label,.fld select.error+label{color:var(--error)}
@@ -175,13 +171,13 @@
       cursor:pointer;transition:all .2s;text-align:center;min-height:40px
     }
     .seg-btn:hover{border-color:var(--brand)}
-    .seg-btn.selected{border-color:var(--brand);background:rgba(8,145,178,.08);color:var(--brand)}
+    .seg-btn.selected{border-color:var(--brand);background:rgba(67,56,202,.08);color:var(--brand)}
 
     .upload-zone{
       border:2px dashed var(--border);border-radius:10px;padding:24px 16px;
       text-align:center;cursor:pointer;transition:all .2s;margin-top:4px
     }
-    .upload-zone:hover{border-color:var(--brand);background:rgba(8,145,178,.03)}
+    .upload-zone:hover{border-color:var(--brand);background:rgba(67,56,202,.03)}
     .upload-zone.has-file{border-style:solid;border-color:var(--success);background:rgba(22,163,74,.04)}
     .upload-zone svg{width:28px;height:28px;color:var(--muted);margin-bottom:6px}
     .upload-zone p{font-size:13px;color:var(--muted)}
@@ -201,7 +197,7 @@
       background:none;border:none;font-size:11px;font-weight:600;color:var(--brand);
       cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .2s
     }
-    .review-card h4 button:hover{background:rgba(8,145,178,.08)}
+    .review-card h4 button:hover{background:rgba(67,56,202,.08)}
     .review-row{display:flex;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px}
     .review-row:last-child{border:none}
     .review-row .rl{width:90px;flex-shrink:0;color:var(--muted);font-weight:500}
@@ -209,11 +205,11 @@
 
     .btn-primary{
       width:100%;padding:14px;border:none;border-radius:10px;
-      background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:#fff;
+      background:var(--brand);color:#fff;
       font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;
       transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px
     }
-    .btn-primary:hover{transform:scale(1.01);filter:brightness(1.05)}
+    .btn-primary:hover{transform:scale(1.01);filter:brightness(1.1)}
     .btn-primary:active{transform:scale(.98)}
     .btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none}
     .btn-primary .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;display:none}
@@ -237,7 +233,7 @@
     @keyframes drawCheck{to{stroke-dashoffset:0}}
     .success-wrap h2{font-size:20px;font-weight:800;color:var(--text);margin-bottom:4px}
     .success-wrap p{font-size:13px;color:var(--muted);line-height:1.5}
-    .success-wrap .ref{font-size:12px;font-weight:700;color:var(--brand);margin-top:10px;padding:6px 14px;background:rgba(8,145,178,.08);border-radius:8px;display:inline-block}
+    .success-wrap .ref{font-size:12px;font-weight:700;color:var(--brand);margin-top:10px;padding:6px 14px;background:rgba(67,56,202,.08);border-radius:8px;display:inline-block}
 
     .actions{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
     .actions .btn-primary{flex:1}
@@ -248,28 +244,27 @@
     }
     .btn-outline:hover{border-color:var(--brand);color:var(--brand)}
 
-    .footer-text{text-align:center;font-size:11px;color:var(--muted);margin-top:20px;padding-bottom:8px}
-    @media(max-height:700px){body{padding:12px}.device-selector{margin-bottom:8px}.device-selector button{padding:4px 12px;font-size:11px}.page-nav{font-size:12px;margin-bottom:4px}.footer-text{margin-top:12px}}
-    @media(max-height:600px){.device-selector,.page-nav,.footer-text{display:none}body{padding:8px}}
+    @media(max-height:700px){body{padding:12px}.device-selector{margin-bottom:8px}.device-selector button{padding:4px 12px;font-size:11px}.page-nav{font-size:12px;margin-bottom:4px}}
+    @media(max-height:600px){.device-selector,.page-nav{display:none}body{padding:8px}}
   </style>
 </head>
 <body>
   <div class="device-selector">
-    <button data-device="phone" class="active">📱 Phone</button>
-    <button data-device="tablet">📟 Tablet</button>
-    <button data-device="desktop">🖥️ Desktop</button>
+    <button data-device="phone" class="active"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Phone</button>
+    <button data-device="tablet"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Tablet</button>
+    <button data-device="desktop"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Desktop</button>
   </div>
 
   <div class="page-nav">
     <a href="../" class="nav-home" title="Home">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v9a1 1 0 0 0 1 1h3v-5h6v5h3a1 1 0 0 0 1-1v-9"/></svg>
     </a>
-    <a href="../workshop/">
+    <a href="../workshop/index.html">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       Workshop
     </a>
     <span class="nav-current">Job Application</span>
-    <span class="disabled"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+    <a href="../fitness/index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
   </div>
 
   <div class="phone-frame device-phone" id="phone-frame">
@@ -288,10 +283,7 @@
       </div>
     </div>
     <div id="app">
-      <div class="top">
-        <img src="../logo-light.png" alt="Know Nation" style="filter:invert(0)">
-        <span>Job Application Form</span>
-      </div>
+      <div style="height:4px"></div>
 
       <div class="step-bar" id="step-bar">
         <div class="step-node"><div class="step-circle active">1</div><span class="step-label">Personal</span></div>
@@ -434,8 +426,6 @@
       <div class="frame-home-bar"><div class="home-indicator"></div></div>
     </div>
   </div>
-
-  <p class="footer-text">Project by Know Nation Limited</p>
 
   <script>
     (function() {
@@ -590,7 +580,7 @@
             const c = document.createElement('div');
             c.style.cssText = 'position:fixed;width:8px;height:8px;border-radius:2px;z-index:999;pointer-events:none;' +
               'left:' + (Math.random() * 100) + 'vw;top:-10px;' +
-              'background:' + ['#0891B2','#06B6D4','#22d3ee','#67e8f9'][Math.floor(Math.random()*4)] + ';' +
+              'background:' + ['#4338ca','#6366f1','#818cf8','#a5b4fc'][Math.floor(Math.random()*4)] + ';' +
               'animation:confettiFall ' + (0.8 + Math.random()) + 's linear forwards';
             document.body.appendChild(c);
             setTimeout(() => c.remove(), 2000);
